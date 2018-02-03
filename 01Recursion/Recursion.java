@@ -53,11 +53,11 @@ public class Recursion{
     }
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Recursion recurse = new Recursion();
-        //System.out.println(recurse.fact(-1));
-        //System.out.println(recurse.fib(10));
+        System.out.println(recurse.fact(-1));
+        System.out.println(recurse.fib(10));
         System.out.println(recurse.sqrt(2));
-    }
+    }*/
 
 }
