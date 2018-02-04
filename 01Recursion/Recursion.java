@@ -31,6 +31,9 @@ public class Recursion{
         if (n < 0){
             throw new IllegalArgumentException();
         }
+        if (n == 0){
+            return 0;
+        }
         return guess(n , n / 2.);
     }
 
@@ -55,9 +58,9 @@ public class Recursion{
 
     /*public static void main(String[] args) {
         Recursion recurse = new Recursion();
-        System.out.println(recurse.fact(-1));
-        System.out.println(recurse.fib(10));
-        System.out.println(recurse.sqrt(2));
+        System.out.println(recurse.fact(10));
+        System.out.println(recurse.fib(5));
+        System.out.println(recurse.sqrt(0));
     }*/
 
 }
