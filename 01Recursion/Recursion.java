@@ -55,28 +55,6 @@ public class Recursion{
         return false;
     }
 
-    public boolean possibleSum(int n, int targetSum){
-        int[] nums = new int[n];
-        int sum = 0;
-        for (int i = 0; i < n + 1; i++){
-            nums[i] = i;
-        }
-        /*if (targetSum == 0 && n >= 0){
-            return true;
-        }*/
-        if (targetSum > n){
-            return false;
-        }
-        if (sum == targetSum){
-            return true;
-        }
-        //addSubset(nums, targetSum);
-        //addSubset(nums, targetSum);
-    }
-
-    public boolean addSubset(int[] nums, int targetSum){
-
-    }
 
     /*public static void main(String[] args) {
         Recursion recurse = new Recursion();
