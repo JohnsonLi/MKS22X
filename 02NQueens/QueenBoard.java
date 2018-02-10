@@ -7,19 +7,23 @@ public class QueenBoard{
     }
     
     private boolean addQueen(int r, int c){
-        if (board[r][c] == 0){     
-            board[r][c] = -1;  
-            updateThreatened(r, c, 1); 
-            return true;
+        if (r < board.length && c < board.length){
+            if (board[r][c] == 0){     
+                board[r][c] = -1;  
+                updateThreatened(r, c, 1); 
+                return true;
+            }
         }
         return false;
     }
 
     private boolean removeQueen(int r, int c){
-        if (board[r][c] == -1){     
-            board[r][c] = 0;
-            updateThreatened(r, c, -1);  
-            return true;
+        if (r < board.length && c < board.length){
+            if (board[r][c] == -1){     
+                board[r][c] = 0;  
+                updateThreatened(r, c, -1); 
+                return true;
+            }
         }
         return false;
     }
@@ -90,22 +94,20 @@ public class QueenBoard{
     public int countHelper(int c){
         int solutions = 0;
         if (c >= board.length){
-            return solutions; 
-        } else {
-            countHelper(c + 1);
+            solutions++;
         }
         for (int i = 0; i < board.length; i++){
             if (addQueen(i, c)){
-                solutions++;
                 countHelper(c + 1);
+                removeQueen(i, c);
             }
-            removeQueen(i, c);
         }
         return solutions;
     }
 
     public static void main(String[] args){
         QueenBoard board = new QueenBoard(8);
+        //board.solve();
         System.out.println(board.countSolutions());
         //System.out.println(board);
     }
