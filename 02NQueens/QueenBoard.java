@@ -7,7 +7,7 @@ public class QueenBoard{
     }
     
     private boolean addQueen(int r, int c){
-        if (board[r][c] <= 0){     
+        if (board[r][c] == 0){     
             board[r][c] = -1;  
             updateThreatened(r, c, 1); 
             return true;
@@ -30,17 +30,21 @@ public class QueenBoard{
         }
         for (int i = 1; r + i < board.length && c + i < board.length; i++){
             board[r + i][c + i] += inc;
-            
+        }
+        for (int i = 1;   c + i < board.length && r - i >= 0  ; i++){
+            board[r - i][c + i] += inc;
         }
     }
 
     public String toString(){
         String strBoard = "";
         for (int i = 0; i < board.length; i++){
-            for(int ii = 0; ii < board.length; ii++){
-                if (board[i][ii] == -1){
+            for(int j = 0; j < board.length; j++){
+                if (board[i][j] < 0){
                     strBoard += "Q ";
-                } else {
+                /*} else if (board[i][j] > 0){
+                    strBoard += "x ";*/
+                } else if (board[i][j] >= 0){
                     strBoard += "_ ";
                 }
             }
@@ -81,6 +85,11 @@ public class QueenBoard{
 
     public static void main(String[] args){
         QueenBoard board = new QueenBoard(8);
+        //board.addQueen(0, 0);
+        //board.addQueen(1, 4);
+        //board.addQueen(7,3);
+        //board.addQueen(7,3);
+        //board.addQueen(6, 4);
         if (board.solve()){
             System.out.println("hi");
         }
