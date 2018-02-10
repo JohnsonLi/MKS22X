@@ -84,31 +84,24 @@ public class QueenBoard{
    }
 
    public int countSolutions(){
+        return countHelper(0);
+   }
+
+    public int countHelper(int c){
         int solutions = 0;
-        int c = 0;
-        if (countHelper(c)){
-            solutions++;
+        if (c >= board.length){
+            return solutions; 
         } else {
             countHelper(c + 1);
         }
-        return solutions;
-   }
-
-    public boolean countHelper(int c){
-        if (c >= board.length){
-            return true; 
-        }
         for (int i = 0; i < board.length; i++){
-            for (int j = 0; j < board.length; j++){
-                if (addQueen(i, j)){
-                    if(countHelper(c + 1)){
-                        return true;
-                    }
-                    removeQueen(i, c);
-                }
+            if (addQueen(i, c)){
+                solutions++;
+                countHelper(c + 1);
             }
+            removeQueen(i, c);
         }
-        return false;
+        return solutions;
     }
 
     public static void main(String[] args){
