@@ -83,17 +83,28 @@ public class QueenBoard{
        return false;
    }
 
+   public int countSolutions(){
+       return countHelper(0);
+   }
+
+    public int countHelper(int c){
+        int solutions = 0;
+        if (c >= board.length){
+            solutions += 1;
+        }
+        for (int i = 0; i < board.length; i++){
+            if (addQueen(i, c)){
+                solveHelper(c + 1);
+                removeQueen(i, c);
+            }
+        }   
+        return solutions;
+    }
+
     public static void main(String[] args){
         QueenBoard board = new QueenBoard(8);
-        //board.addQueen(0, 0);
-        //board.addQueen(1, 4);
-        //board.addQueen(7,3);
-        //board.addQueen(7,3);
-        //board.addQueen(6, 4);
-        if (board.solve()){
-            System.out.println("hi");
-        }
-        System.out.println(board);
+        System.out.println(board.countSolutions());
+        //System.out.println(board);
     }
     
 }
