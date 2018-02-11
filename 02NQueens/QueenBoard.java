@@ -70,30 +70,31 @@ public class QueenBoard{
     public boolean solve(){
         checkException();
         return solveHelper(0);
-   }
+    }
 
-   public boolean solveHelper(int c){
-       if (c >= board.length){
+    public boolean solveHelper(int c){
+        checkException();
+        if (c >= board.length){
            return true; 
-       }
-       for (int i = 0; i < board.length; i++){
+        }
+        for (int i = 0; i < board.length; i++){
            if (addQueen(i, c)){
                if(solveHelper(c + 1)){
                    return true;
                }
                removeQueen(i, c);
            }
-       }
-       return false;
-   }
+        }
+        return false;
+    }
 
-   public int countSolutions(){
-       int solutions = 0;
-       for (int  i = 0; i < board.length; i ++){
+    public int countSolutions(){
+        int solutions = 0;
+        for (int  i = 0; i < board.length; i ++){
            solutions += countHelper(i);
-       }
-       return solutions;
-   }
+        }
+        return solutions;
+    }
 
     public int countHelper(int c){
         if (c >= board.length){
@@ -101,7 +102,8 @@ public class QueenBoard{
         }
         for (int i = 0; i < board.length; i++){
             if (addQueen(i, c)){
-                countHelper(c + 1);
+                return countHelper(c + 1);
+            } else {
                 board[i][c] = 0;
             }
         }
