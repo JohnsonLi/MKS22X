@@ -88,22 +88,26 @@ public class QueenBoard{
    }
 
    public int countSolutions(){
-        return countHelper(0);
+       int solutions = 0;
+       for (int  i = 0; i < board.length; i ++){
+           solutions += countHelper(i);
+       }
+       return solutions;
    }
 
     public int countHelper(int c){
-        int solutions = 0;
         if (c >= board.length){
-            solutions++;
+            return 1;
         }
         for (int i = 0; i < board.length; i++){
             if (addQueen(i, c)){
                 countHelper(c + 1);
-                removeQueen(i, c);
+                board[i][c] = 0;
             }
         }
-        return solutions;
+        return 0;
     }
+
 
     public static void main(String[] args){
         QueenBoard board = new QueenBoard(8);
