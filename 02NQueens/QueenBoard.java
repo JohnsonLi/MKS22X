@@ -73,7 +73,6 @@ public class QueenBoard{
     }
 
     public boolean solveHelper(int c){
-        checkException();
         if (c >= board.length){
            return true; 
         }
@@ -111,11 +110,11 @@ public class QueenBoard{
     }
 
 
-    public static void main(String[] args){
-        QueenBoard board = new QueenBoard(8);
-        //board.solve();
-        System.out.println(board.countSolutions());
-        //System.out.println(board);
-    }
+    /*public static void main(String[] args){
+        QueenBoard board = new QueenBoard(30);
+        board.solve();
+        //System.out.println(board.countSolutions());
+        System.out.println(board);
+    }*/
     
 }
