@@ -88,33 +88,31 @@ public class QueenBoard{
     }
 
     public int countSolutions(){
-        int solutions = 0;
-        for (int  i = 0; i < board.length; i ++){
-           solutions += countHelper(i);
-        }
-        return solutions;
+          return countHelper(0);
     }
 
     public int countHelper(int c){
+        int solutions  = 0;
         if (c >= board.length){
             return 1;
         }
         for (int i = 0; i < board.length; i++){
             if (addQueen(i, c)){
-                return countHelper(c + 1);
-            } else {
-                board[i][c] = 0;
+                if (countHelper(c + 1) == 1){
+                    solutions++;
+                }
+                removeQueen(i, c);
             }
         }
-        return 0;
+        return solutions;
     }
 
 
-    /*public static void main(String[] args){
-        QueenBoard board = new QueenBoard(30);
-        board.solve();
-        //System.out.println(board.countSolutions());
-        System.out.println(board);
-    }*/
+    public static void main(String[] args){
+        QueenBoard board = new QueenBoard(8);
+        //board.solve();
+        System.out.println(board.countSolutions());
+        //System.out.println(board);
+    }
     
 }
