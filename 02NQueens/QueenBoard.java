@@ -108,11 +108,11 @@ public class QueenBoard{
     }
 
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         QueenBoard board = new QueenBoard(8);
         //board.solve();
         System.out.println(board.countSolutions());
         //System.out.println(board);
-    }
+    }*/
     
 }
