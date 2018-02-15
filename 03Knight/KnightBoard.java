@@ -8,10 +8,18 @@ public class KnightBoard{
                             };
 
     public KnightBoard(int startingRows, int startingCols){ 
-        checkException();
         board = new int[startingRows][startingCols];
-        rows = startingRows;
-        cols = startingCols;
+        rows = startingRows - 1;
+        cols = startingCols - 1;
+    }
+
+    public boolean canPlace(int move, int currentRow, int currentCol){
+        int rowOffSet = moves[move][0];
+        int colOffSet = moves[move][1];
+        if (currentRow + rowOffSet <= rows && currentCol + colOffSet <= cols && (board[currentRow + rowOffSet][currentCol + colOffSet] == 0)){
+            return true;        
+        }
+        return false;
     }
 
     public String toString(){
@@ -34,8 +42,8 @@ public class KnightBoard{
 
     public void checkException(){
         for (int i = 0; i < board.length; i++){
-            for (int j = 0; j < board.length; j++){
-                if (board[i][j] != 0 || startingRows < 0 || startingCols < 0){
+            for (int j = 0; j < board[0].length; j++){
+                if (board[i][j] != 0){
                     throw new IllegalStateException();
                 }
             }
@@ -53,11 +61,11 @@ public class KnightBoard{
             return true;
         }
         for (int i = 0; i < 8; i ++){
-            if (board[row + moves[i][0]][col + moves[i][1]]){
+            if (canPlace(i, row, col)){
                 board[row + moves[i][0]][col + moves[i][1]] = level;
-                return solveH(row + moves[i][0], col + moves[i][1]);
+                return solveH(row + moves[i][0], col + moves[i][1], level + 1);
             }
-            board[row + moves[i][0]][col + moves[i][1]] = 0;
+            //board[row + moves[i][0]][col + moves[i][1]] = 0;
         }
         return false;
     }
