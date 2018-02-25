@@ -9,17 +9,16 @@ public class KnightBoard{
 
     public KnightBoard(int startingRows, int startingCols){ 
         board = new int[startingRows][startingCols];
-        rows = startingRows - 1;
-        cols = startingCols - 1;
+        rows = startingRows;
+        cols = startingCols;
     }
 
-    public boolean canPlace(int move, int currentRow, int currentCol){
-        int rowOffSet = moves[move][0];
-        int colOffSet = moves[move][1];
-        if (currentRow + rowOffSet <= rows && currentCol + colOffSet <= cols && (board[currentRow + rowOffSet][currentCol + colOffSet] == 0)){
-            return true;        
-        }
-        return false;
+    public boolean canPlace(int moveNum, int currentRow, int currentCol){
+        return currentRow + moves[moveNum][0] > -1 && 
+               currentCol + moves[moveNum][1] > -1 && 
+               currentRow + moves[moveNum][0] < rows && 
+               currentCol + moves[moveNum][1] < cols && 
+               (board[currentRow + moves[moveNum][0]][currentCol + moves[moveNum][1]] == 0);
     }
 
     public String toString(){
@@ -52,20 +51,21 @@ public class KnightBoard{
 
     public boolean solve(int row, int col){
         checkException();
-        board[row][col] = 1;
-        return solveH(row, col, 2);
+        return solveH(row, col, 1);
     }
 
     public boolean solveH(int row, int col, int level){
+        board[row][col] = level;
         if (level == (rows * cols)){
             return true;
         }
-        for (int i = 0; i < 8; i ++){
+        for (int i = 0; i < 8; i++){
             if (canPlace(i, row, col)){
-                board[row + moves[i][0]][col + moves[i][1]] = level;
-                return solveH(row + moves[i][0], col + moves[i][1], level + 1);
+                if(solveH(row + moves[i][0], col + moves[i][1], level + 1)){
+                    return true;
+                } 
+                board[row + moves[i][0]][col + moves[i][1]] = 0;
             }
-            //board[row + moves[i][0]][col + moves[i][1]] = 0;
         }
         return false;
     }
