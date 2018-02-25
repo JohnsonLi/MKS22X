@@ -70,12 +70,33 @@ public class KnightBoard{
         return false;
     }
 
+    public int countSolutions(int row, int col){
+        checkException();
+        return countH(row, col, 1);
+    }
 
-    public static void main(String[] args){
-        KnightBoard board = new KnightBoard(7, 7);
-        board.solve(0,0);
-        System.out.println(board);    
-    }    
+    public int countH(int row, int col, int level){
+        int numSolutions = 0;
+        board[row][col] = level;
+        if(level == (rows * cols)){
+            board[row][col] = 0;
+            return 1;
+        }
+        for (int i = 0; i < 8; i++){
+            if (canPlace(i, row, col)){
+                numSolutions += countH(row + moves[i][0], col + moves[i][1], level + 1);
+            }
+        }
+        board[row][col] = 0;
+        return numSolutions;
+    }
+
+    // public static void main(String[] args){
+    //     KnightBoard board = new KnightBoard(5, 5);
+    //     //board.solve(0,0);
+    //     System.out.println(board.countSolutions(0, 0));
+    //     //System.out.println(board);    
+    // }    
 
 }
 
