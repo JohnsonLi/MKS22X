@@ -5,6 +5,7 @@ public class Maze{
 
     private char[][] maze;
     private boolean animate;//false by default
+    String mazeStr = "";
 
     /*Constructor loads a maze text file, and sets animate to false by default.
 
@@ -22,31 +23,27 @@ public class Maze{
 
     */
 
-    public Maze(String filename){
+    public Maze(String filename) throws FileNotFoundException{
         //COMPLETE CONSTRUCTOR
         animate = false;
         int row=0,col=0;
         String mazeStr = "";
 
-        try{
-            File text = new File(filename);
-            Scanner inf = new Scanner(text);
+        File text = new File(filename);
+        Scanner inf = new Scanner(text);
 
-            if(inf.hasNextLine()){
-                col = inf.nextLine().length();
-            }
-
-            while(inf.hasNextLine()){
-                row++;
-                mazeStr+=inf.nextLine();
-            } 
-        } catch (FileNotFoundException e){
-      
+        if(inf.hasNextLine()){
+            col = inf.nextLine().length();
         }
+
+        while(inf.hasNextLine()){
+            row++;
+            mazeStr+=inf.nextLine();
+        }  
 
         maze = new char[row][col];
         
-        for(int
+        //for(int
 
     }   
     
@@ -145,7 +142,14 @@ public class Maze{
     }
 
     public static void main(String[] args){
-        Maze maze = new Maze("data1.dat");
+        Maze maze = null;           
+        try{
+            maze = new Maze("data1.dat");
+        }
+        catch(FileNotFoundException e) {
+            System.out.println("FILE NOT FOUND");
+        }    
+        
     }
 
 }
