@@ -4,8 +4,9 @@ public class Maze{
 
 
     private char[][] maze;
+    private int[][] moves = {{1,0},{0,1},{-1,0},{0,-1}};
     private boolean animate;//false by default
-    String mazeStr = "";
+    
 
     /*Constructor loads a maze text file, and sets animate to false by default.
 
@@ -26,14 +27,16 @@ public class Maze{
     public Maze(String filename) throws FileNotFoundException{
         //COMPLETE CONSTRUCTOR
         animate = false;
-        int row=0,col=0;
+        int row=1,col=0;
         String mazeStr = "";
 
         File text = new File(filename);
         Scanner inf = new Scanner(text);
 
         if(inf.hasNextLine()){
-            col = inf.nextLine().length();
+            String line = inf.nextLine();
+            mazeStr += line;
+            col = line.length();
         }
 
         while(inf.hasNextLine()){
@@ -43,7 +46,13 @@ public class Maze{
 
         maze = new char[row][col];
         
-        //for(int
+        int count = 0;
+        for(int i = 0; i < maze.length; i++){
+            for(int j = 0; j < maze[0].length; j++){
+                maze[i][j] = mazeStr.charAt(count);   
+                count++;         
+            }
+        }
 
     }   
     
@@ -78,12 +87,18 @@ public class Maze{
 
       Note the helper function has the same name, but different parameters.
       Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
-
     */
     public int solve(){
-
+        int[] start;
             //find the location of the S. 
-
+        for(int i = 0; i < maze.length; i++){
+            for(int j = 0; j < maze[0].length; j++){
+                if(maze[i][j].equals('S')){
+                    System.out.println(i + j);
+                }
+            }
+        }
+        System.out.println(start + "..should be 5, 1 " );
 
             //erase the S
 
@@ -148,7 +163,10 @@ public class Maze{
         }
         catch(FileNotFoundException e) {
             System.out.println("FILE NOT FOUND");
-        }    
+        }  
+        System.out.println(maze);  
+        maze.solve();
+        
         
     }
 
