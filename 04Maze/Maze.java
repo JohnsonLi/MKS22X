@@ -6,6 +6,7 @@ public class Maze{
     private char[][] maze;
     private int[][] moves = {{1,0},{0,1},{-1,0},{0,-1}};
     private boolean animate;//false by default
+    private int count = -1;
     
 
     /*Constructor loads a maze text file, and sets animate to false by default.
@@ -82,6 +83,9 @@ public class Maze{
     }
 
 
+    private boolean canPlace(int row, int col, moveNum){
+        
+    }
 
     /*Wrapper Solve Function returns the helper function
 
@@ -89,24 +93,27 @@ public class Maze{
       Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
     */
     public int solve(){
-        int[] start;
+        int startR;
+        int startC;
             //find the location of the S. 
         for(int i = 0; i < maze.length; i++){
             for(int j = 0; j < maze[0].length; j++){
-                if(maze[i][j].equals('S')){
-                    System.out.println(i + j);
+                if(maze[i][j] == ('S')){
+                    startR = i;
+                    startC = j;
                 }
             }
         }
-        System.out.println(start + "..should be 5, 1 " );
 
             //erase the S
+        maze[startR][startC] = ' ';
 
 
             //and start solving at the location of the s.
+        
 
             //return solveH(???,???);
-        return 0;
+        return solveH(startR, startC, 0);
     }
 
     /*
@@ -141,7 +148,11 @@ public class Maze{
 
         //COMPLETE SOLVE
 
-        return -1; //so it compiles
+        if(maze[row][col] == 'E'){
+            return 1;
+        }
+
+        
     }
 
     public String toString(){
@@ -156,6 +167,7 @@ public class Maze{
         return str;
     }
 
+/*    
     public static void main(String[] args){
         Maze maze = null;           
         try{
@@ -168,6 +180,6 @@ public class Maze{
         maze.solve();
         
         
-    }
+    }*/
 
 }
