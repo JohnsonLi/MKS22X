@@ -22,7 +22,11 @@ public class Driver{
         }
         catch(FileNotFoundException e) {
             System.out.println("FILE NOT FOUND");
-        }  
+        }catch(IllegalStateException e){
+            System.out.println("PROBLEM WITH BOARD");
+        }
+        maze.setAnimate(true);
+        System.out.println(maze.solve());
         System.out.println(maze);  
         
         

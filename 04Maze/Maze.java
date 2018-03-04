@@ -6,7 +6,7 @@ public class Maze{
     private char[][] maze;
     private int[][] moves = {{1,0},{0,1},{-1,0},{0,-1}};
     private boolean animate;//false by default
-    private int count = -1;
+    //private int count = -1;
     
 
     /*Constructor loads a maze text file, and sets animate to false by default.
@@ -55,6 +55,8 @@ public class Maze{
             }
         }
 
+        inf.close();
+
     }   
     
 
@@ -83,8 +85,11 @@ public class Maze{
     }
 
 
-    private boolean canPlace(int row, int col, moveNum){
-        
+    private boolean canPlace(int row, int col, int moveNum){
+        return row + moves[moveNum][0] < maze.length                            && 
+               col + moves[moveNum][1] < maze[0].length                         &&
+               (maze[row + moves[moveNum][0]][col + moves[moveNum][1]] == ' '   || 
+               maze[row + moves[moveNum][0]][col + moves[moveNum][1]] == 'E');
     }
 
     /*Wrapper Solve Function returns the helper function
@@ -93,8 +98,8 @@ public class Maze{
       Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
     */
     public int solve(){
-        int startR;
-        int startC;
+        int startR = -1;
+        int startC = -1;
             //find the location of the S. 
         for(int i = 0; i < maze.length; i++){
             for(int j = 0; j < maze[0].length; j++){
@@ -105,14 +110,10 @@ public class Maze{
             }
         }
 
-            //erase the S
+        //erase the S
         maze[startR][startC] = ' ';
 
-
-            //and start solving at the location of the s.
-        
-
-            //return solveH(???,???);
+        //return solveH(???,???);
         return solveH(startR, startC, 0);
     }
 
@@ -134,7 +135,7 @@ public class Maze{
             Note: This is not required based on the algorithm, it is just nice visually to see.
         All visited spots that are part of the solution are changed to '@'
     */
-    private int solveH(int row, int col){ //you can add more parameters since this is private
+    private int solveH(int row, int col, int moveNum){ //you can add more parameters since this is private
 
 
         //automatic animation! You are welcome.
@@ -143,16 +144,31 @@ public class Maze{
             clearTerminal();
             System.out.println(this);
 
-            wait(20);
+            wait(100);
         }
 
         //COMPLETE SOLVE
-
         if(maze[row][col] == 'E'){
-            return 1;
+            return moveNum;
+        }
+        maze[row][col] = '@';
+
+        for(int i = 0 ; i < moves.length; i++){
+            if(canPlace(row, col, i)){
+                int numSteps = solveH(row + moves[i][0], col + moves[i][1], moveNum + 1);
+                if (numSteps != -1){
+                    return numSteps;
+                }
+                // idk why this doesnt work
+                // if(solveH(row + moves[i][0], col + moves[i][1], moveNum + 1) != -1){
+                //     return solveH(row + moves[i][0], col + moves[i][1], moveNum + 1);
+                // }
+            }
         }
 
-        
+        maze[row][col] = '.';
+        //COMPLETE SOLVE
+        return -1; //so it compiles    
     }
 
     public String toString(){
@@ -166,20 +182,4 @@ public class Maze{
         }
         return str;
     }
-
-/*    
-    public static void main(String[] args){
-        Maze maze = null;           
-        try{
-            maze = new Maze("data1.dat");
-        }
-        catch(FileNotFoundException e) {
-            System.out.println("FILE NOT FOUND");
-        }  
-        System.out.println(maze);  
-        maze.solve();
-        
-        
-    }*/
-
 }
