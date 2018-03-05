@@ -144,7 +144,7 @@ public class Maze{
             clearTerminal();
             System.out.println(this);
 
-            wait(100);
+            wait(50);
         }
 
         //COMPLETE SOLVE

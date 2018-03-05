@@ -18,7 +18,7 @@ public class Driver{
     public static void main(String[] args){
         Maze maze = null;           
         try{
-            maze = new Maze("data1.dat");
+            maze = new Maze("data3.dat");
         }
         catch(FileNotFoundException e) {
             System.out.println("FILE NOT FOUND");
