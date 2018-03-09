@@ -19,12 +19,12 @@ public class USACO{
 
             // System.out.println(row + " " + col);
             field = new int[row][col];
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < col; j++) {
+            for(int i = 0; i < row; i++){
+                for(int j = 0; j < col; j++){
                     field[i][j] = Integer.parseInt(in.next());
                 }
             }
-        }catch (FileNotFoundException error) {
+        }catch (FileNotFoundException error){
             System.out.println("FILE NOT FOUND");
             System.exit(1);
         }
@@ -67,12 +67,76 @@ public class USACO{
     }
 
 
-    // public static int silver(String filename){
+    public static int silver(String filename){
+        int row=0,col=0,secs=0,rStart=0,rEnd=0,cStart=0,cEnd=0;
+        char[][] pasture = new char[row][col]; int[][] board1, board2; 
+        Scanner in = null;
 
-    // }
+        try {
+            File f = new File(filename);
+            in = new Scanner(f);
 
+            row = Integer.parseInt(in.next()); 
+            col = Integer.parseInt(in.next());
+            secs = Integer.parseInt(in.next());
 
-    public static void main(String[] args) {
-       System.out.println( USACO.bronze("makelake.in"));
+            pasture = new char[row][col];
+            for(int i = 0; i < row; i++) {
+                String holder = in.next();
+                for(int j = 0; j < col; j++) {
+                    pasture[i][j] = holder.charAt(j);
+                }
+            }
+
+            rStart = Integer.parseInt(in.next()) - 1;
+		    cStart = Integer.parseInt(in.next()) - 1;
+		    rEnd = Integer.parseInt(in.next()) - 1;
+            cEnd = Integer.parseInt(in.next()) - 1;
+        }catch (FileNotFoundException error){
+            System.out.println("FILE NOT FOUND");
+            System.exit(1);
+        }
+
+        board1 = new int[row][col];
+        board1[rStart][cStart] = 1;
+        board2 = new int[row][col];
+
+        for(int i = 0; i < secs; i++){
+            for(int j = 0; j < row; j++){
+                for(int k = 0; k < col; k++){
+                    if(pasture[j][j] != '*' && board2[j][k] == 0){
+                        int ways = 0;
+                        if(j + 1 < row){
+                            ways += board1[j + 1][k];
+                        }
+                        if(j - 1 >= 0){
+                            ways += board1[j - 1][k];
+                        }
+                        if(k + 1 < col){
+                            ways += board1[j][k + 1];
+                        }
+                        if(k - 1 >= 0){
+                            ways += board1[j][k - 1];
+                        }
+                        board2[j][k] = ways;
+                    }
+                }
+            }
+
+            for(int j = 0; j < row; j++){
+                for(int k = 0; k < col; k++){
+                    board1[j][k] = board2[j][k];
+                }
+            }
+        }
+
+        in.close();
+        return board2[rEnd][cEnd];
     }
+
+
+    // public static void main(String[] args) {
+    //    System.out.println( USACO.bronze("makelake.in"));
+    //    System.out.println(USACO.silver("ctravel.in"));
+    // }
 }
