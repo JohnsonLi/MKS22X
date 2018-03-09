@@ -104,7 +104,7 @@ public class USACO{
         for(int i = 0; i < secs; i++){
             for(int j = 0; j < row; j++){
                 for(int k = 0; k < col; k++){
-                    if(pasture[j][j] != '*' && board2[j][k] == 0){
+                    if(pasture[j][k] != '*' && board2[j][k] == 0){
                         int ways = 0;
                         if(j + 1 < row){
                             ways += board1[j + 1][k];
@@ -135,8 +135,8 @@ public class USACO{
     }
 
 
-    // public static void main(String[] args) {
-    //    System.out.println( USACO.bronze("makelake.in"));
-    //    System.out.println(USACO.silver("ctravel.in"));
-    // }
+    public static void main(String[] args) {
+       System.out.println( USACO.bronze("makelake.in"));
+       System.out.println(USACO.silver("ctravel.in"));
+    }
 }
