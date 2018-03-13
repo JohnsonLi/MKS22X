@@ -98,13 +98,15 @@ public class USACO{
         }
 
         board1 = new int[row][col];
-        board1[rStart][cStart] = 1;
         board2 = new int[row][col];
+        board1[rStart][cStart] = 1;
 
         for(int i = 0; i < secs; i++){
             for(int j = 0; j < row; j++){
                 for(int k = 0; k < col; k++){
-                    if(pasture[j][j] != '*' && board2[j][k] == 0){
+                    if(board1[j][k] != 0){
+                        board2[j][k] = 0;
+                    }else if(pasture[j][k] != '*' && board2[j][k] == 0){
                         int ways = 0;
                         if(j + 1 < row){
                             ways += board1[j + 1][k];
