@@ -10,7 +10,7 @@ public class Quick{
 
     public static int partition(int[] data, int start, int end){
         int pivInd = (int)(Math.random() * (end - start)) + start;
-        System.out.println(pivInd);
+        //System.out.println(pivInd);
         
         swap(data, pivInd, start);
         int i = start + 1;
@@ -47,11 +47,26 @@ public class Quick{
         return data[index];
     }
 
-    public static void main(String[] args) {
-        int[] arr = {123,445,667,124,54555};
-        System.out.println(Quick.quickselect(arr, 5));
-        // System.out.println(Arrays.toString(arr));
-        // System.out.println(Quick.partition(arr, 0, arr.length - 1));
-        // System.out.println(Arrays.toString(arr));
+    public static void quicksort(int[] ary){
+        quickH(ary, 0, ary.length - 1);
     }
+
+    public static void quickH(int[] ary, int start, int end){
+        if(end > start){
+            int index = partition(ary, start, end);
+            quickH(ary, start, index - 1);
+            quickH(ary, index + 1, end);
+        }
+    }
+
+    // public static void main(String[] args) {
+    //     int[] arr = {123,445,667,124,54555};
+    //     System.out.println(Arrays.toString(arr));
+    //     Quick.quicksort(arr);
+    //     System.out.println(Arrays.toString(arr));
+
+    //     System.out.println(Arrays.toString(arr));
+    //     System.out.println(Quick.partition(arr, 0, arr.length - 1));
+    //     System.out.println(Arrays.toString(arr));
+    // }
 }
