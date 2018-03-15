@@ -10,7 +10,7 @@ public class Quick{
 
     public static int partition(int[] data, int start, int end){
         int pivInd = (int)(Math.random() * (end - start)) + start;
-        //System.out.println(pivInd);
+        System.out.println(pivInd);
         
         swap(data, pivInd, start);
         int i = start + 1;
@@ -31,8 +31,8 @@ public class Quick{
     public static int quickselect(int[] data, int k){
         int start = 0;
         int end = data.length - 1;
-
-        int index = partition(data, start, end);
+        // I have no idea why index has to be set at data.length - 1; other values make it go forever :\\\\\
+        int index = data.length - 1;
 
         k -= 1;
         while(index != k){
@@ -44,13 +44,12 @@ public class Quick{
                 index = partition(data, start, end);
             }
         }
-
         return data[index];
     }
 
     public static void main(String[] args) {
-        int[] arr = {1,2,3,4,5,6,7,8,9};
-        System.out.println(Quick.quickselect(arr, 9));
+        int[] arr = {123,445,667,124,54555};
+        System.out.println(Quick.quickselect(arr, 5));
         // System.out.println(Arrays.toString(arr));
         // System.out.println(Quick.partition(arr, 0, arr.length - 1));
         // System.out.println(Arrays.toString(arr));
