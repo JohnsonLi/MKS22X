@@ -59,37 +59,59 @@ public class Quick{
         }
     }
 
-    public static void dutch(int[] ary, int lt, int gt){
-        int lt = 0;
-        int gt = ary.length - 1;
-        int i = (int)(Math.random() * (end - start)) + start;
+    private static int[] dutch(int[] ary, int start, int end){
+        int hi = end - 1;
+        int lo = start;
+        int i = 0;
         int pivNum = ary[i];
+        //System.out.println(pivNum);
 
-        while(i <= gt){
-            if(arr[i] == pivNum){
+        while(i <= hi){
+            if(ary[i] < pivNum){
+                swap(ary, i, lo);
+                i++;
+                lo++;
+            } else if(ary[i] > pivNum){
+                swap(ary, i, hi);
+                hi--;
+            } else {
                 i++;
             }
-            if(arr[i] > pivNum){
-                swap(ary, i, gt);
-                gt--;
-            }
-            if(arr[i] < pivNum){
-                swap(ary, i, lt){
-                    i++;
-                    lt++;
-                }
-            }
         }
+        // System.out.println(lo);
+        // System.out.println(hi);
+        // Arrays.toString(ary);
+        return new int[] {lo, hi};
     }
 
-    // public static void main(String[] args) {
-    //     int[] arr = {123,445,667,124,54555,34,6,3,5,788,345,636363434,5345,43};
-    //     System.out.println(Arrays.toString(arr));
-    //     Quick.quicksort(arr);
-    //     System.out.println(Arrays.toString(arr));
+    public static void quickDutch(int[] ary){
+        quickDutchH(ary, 0, ary.length);
+    }
 
-    //     // System.out.println(Arrays.toString(arr));
-    //     // System.out.println(Quick.partition(arr, 0, arr.length - 1));
-    //     // System.out.println(Arrays.toString(arr));
-    // }
+    public static void quickDutchH(int[] ary, int start, int end){
+        if(end <= start){
+            return;
+        }
+        int lo,hi;
+        int[] res = dutch(ary, start, end);
+        lo = res[0];
+        hi = res[1];
+        quickDutchH(ary, start, lo - 1);
+        quickDutchH(ary, hi + 1, end); 
+    }
+
+    public static void main(String[] args) {
+        int[] ary = /*{999,999,999,4,1,0,3,2,999,999,999};*/{12,23213,434,34,34,34,34,34,213123,21323,2323,123,123,123,444444};
+        // System.out.println(Arrays.toString(ary));
+        // Quick.quicksort(ary);
+        // System.out.println(Arrays.toString(ary));
+
+        // System.out.println(Arrays.toString(ary));
+        // System.out.println(Quick.partition(ary, 0, ary.length - 1));
+        // System.out.println(Arrays.toString(ary));
+        System.out.println(Arrays.toString(ary));
+        //Quick.dutch(ary, 0, ary.length);
+        Quick.quickDutch(ary);
+        System.out.println(Arrays.toString(ary));
+    }
 }
