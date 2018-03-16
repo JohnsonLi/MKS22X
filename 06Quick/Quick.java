@@ -8,61 +8,61 @@ public class Quick{
         data[b] = temp;
     }
 
-    public static int partition(int[] data, int start, int end){
-        int pivInd = (int)(Math.random() * (end - start)) + start;
-        //System.out.println(pivInd);
+    // public static int partitionOld(int[] data, int start, int end){
+    //     int pivInd = (int)(Math.random() * (end - start)) + start;
+    //     //System.out.println(pivInd);
         
-        swap(data, pivInd, start);
-        int i = start + 1;
-        int j = end;
+    //     swap(data, pivInd, start);
+    //     int i = start + 1;
+    //     int j = end;
 
-        while(i <= j){
-            if(data[i] > data[start]){
-                swap(data, i, j);
-                j--;
-            } else {
-                i++;
-            }
-        }
-        swap(data, j, start);
-        return j;
-    }
+    //     while(i <= j){
+    //         if(data[i] > data[start]){
+    //             swap(data, i, j);
+    //             j--;
+    //         } else {
+    //             i++;
+    //         }
+    //     }
+    //     swap(data, j, start);
+    //     return j;
+    // }
 
-    public static int quickselect(int[] data, int k){
-        int start = 0;
-        int end = data.length - 1;
-        // I have no idea why index has to be set at data.length - 1; other values make it go forever :\\\\\
-        int index = data.length - 1;
+    // public static int quickselectOld(int[] data, int k){
+    //     int start = 0;
+    //     int end = data.length - 1;
+    //     // I have no idea why index has to be set at data.length - 1; other values make it go forever :\\\\\
+    //     int index = data.length - 1;
 
-        k -= 1;
-        while(index != k){
-            if(index > k){
-                end = index;
-                index = partition(data, start, end);
-            } else {
-                start = index;
-                index = partition(data, start, end);
-            }
-        }
-        return data[index];
-    }
+    //     k -= 1;
+    //     while(index != k){
+    //         if(index > k){
+    //             end = index;
+    //             index = partition(data, start, end);
+    //         } else {
+    //             start = index;
+    //             index = partition(data, start, end);
+    //         }
+    //     }
+    //     return data[index];
+    // }
 
-    public static void quicksort(int[] ary){
-        quickH(ary, 0, ary.length - 1);
-    }
+    // public static void quicksortOld(int[] ary){
+    //     quickH(ary, 0, ary.length - 1);
+    // }
 
-    public static void quickH(int[] ary, int start, int end){
-        if(end >= start){
-            int index = partition(ary, start, end);
-            quickH(ary, start, index - 1);
-            quickH(ary, index + 1, end);
-        }
-    }
+    // public static void quickH(int[] ary, int start, int end){
+    //     if(end >= start){
+    //         int index = partition(ary, start, end);
+    //         quickH(ary, start, index - 1);
+    //         quickH(ary, index + 1, end);
+    //     }
+    // }
 
-    private static int[] dutch(int[] ary, int lo, int hi){
+    private static void partition(int[] ary, int lo, int hi){
         int gt = hi - 1;
         int lt = lo;
-        int i = 0;
+        int i = lo;
         int pivNum = ary[i];
         //System.out.println(pivNum);
 
@@ -81,8 +81,13 @@ public class Quick{
         // System.out.println(lo);
         // System.out.println(hi);
         // Arrays.toString(ary);
-        return new int[] {lo, hi};
     }
+
+    // public static void quicksort(int[] ary){
+    //     quicksortH(ary, 0, ary.length);
+    // }
+
+    // public static void quicksort
 
     // public static void quickDutch(int[] ary){
     //     quickDutchH(ary, 0, ary.length);
@@ -101,7 +106,7 @@ public class Quick{
     // }
 
     public static void main(String[] args) {
-        int[] ary = /*{999,999,999,4,1,0,3,2,999,999,999};*//*{12,23213,434,34,34,34,34,34,213123,21323,2323,123,123,123,444444};*/{1,1,1,1,1,1,1,1,1,2,2,1,1,2,2,2,0,0,0,0,1,1,1,2,2};
+        int[] ary = {999,999,999,4,1,0,3,2,999,999,999};/*{12,23213,434,34,34,34,34,34,213123,21323,2323,123,123,123,444444};*//*{1,1,1,1,1,1,1,1,1,2,2,1,1,2,2,2,0,0,0,0,1,1,1,2,2};*/
         // System.out.println(Arrays.toString(ary));
         // Quick.quicksort(ary);
         // System.out.println(Arrays.toString(ary));
@@ -111,7 +116,7 @@ public class Quick{
         // System.out.println(Arrays.toString(ary));
         System.out.println(Arrays.toString(ary));
         //Quick.dutch(ary, 0, ary.length);
-        Quick.dutch(ary, 0, ary.length);
+        Quick.partition(ary, 0, ary.length);
         System.out.println(Arrays.toString(ary));
     }
 }
