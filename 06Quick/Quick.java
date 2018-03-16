@@ -59,21 +59,21 @@ public class Quick{
         }
     }
 
-    private static int[] dutch(int[] ary, int start, int end){
-        int hi = end - 1;
-        int lo = start;
+    private static int[] dutch(int[] ary, int lo, int hi){
+        int gt = hi - 1;
+        int lt = lo;
         int i = 0;
         int pivNum = ary[i];
         //System.out.println(pivNum);
 
-        while(i <= hi){
+        while(i <= gt){
             if(ary[i] < pivNum){
-                swap(ary, i, lo);
+                swap(ary, i, lt);
                 i++;
-                lo++;
+                lt++;
             } else if(ary[i] > pivNum){
-                swap(ary, i, hi);
-                hi--;
+                swap(ary, i, gt);
+                gt--;
             } else {
                 i++;
             }
@@ -84,24 +84,24 @@ public class Quick{
         return new int[] {lo, hi};
     }
 
-    public static void quickDutch(int[] ary){
-        quickDutchH(ary, 0, ary.length);
-    }
+    // public static void quickDutch(int[] ary){
+    //     quickDutchH(ary, 0, ary.length);
+    // }
 
-    public static void quickDutchH(int[] ary, int start, int end){
-        if(end <= start){
-            return;
-        }
-        int lo,hi;
-        int[] res = dutch(ary, start, end);
-        lo = res[0];
-        hi = res[1];
-        quickDutchH(ary, start, lo - 1);
-        quickDutchH(ary, hi + 1, end); 
-    }
+    // public static void quickDutchH(int[] ary, int start, int end){
+    //     if(end <= start){
+    //         return;
+    //     }
+    //     int lo,hi;
+    //     int[] res = dutch(ary, start, end);
+    //     lo = res[0];
+    //     hi = res[1];
+    //     quickDutchH(ary, start, lo - 1);
+    //     quickDutchH(ary, hi + 1, end); 
+    // }
 
     public static void main(String[] args) {
-        int[] ary = /*{999,999,999,4,1,0,3,2,999,999,999};*/{12,23213,434,34,34,34,34,34,213123,21323,2323,123,123,123,444444};
+        int[] ary = /*{999,999,999,4,1,0,3,2,999,999,999};*//*{12,23213,434,34,34,34,34,34,213123,21323,2323,123,123,123,444444};*/{1,1,1,1,1,1,1,1,1,2,2,1,1,2,2,2,0,0,0,0,1,1,1,2,2};
         // System.out.println(Arrays.toString(ary));
         // Quick.quicksort(ary);
         // System.out.println(Arrays.toString(ary));
@@ -111,7 +111,7 @@ public class Quick{
         // System.out.println(Arrays.toString(ary));
         System.out.println(Arrays.toString(ary));
         //Quick.dutch(ary, 0, ary.length);
-        Quick.quickDutch(ary);
+        Quick.dutch(ary, 0, ary.length);
         System.out.println(Arrays.toString(ary));
     }
 }
