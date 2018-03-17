@@ -60,13 +60,12 @@ public class Quick{
     // }
 
     private static void partition(int[] ary, int lo, int hi){
-        int lt = lo;
-        int gt = hi - 1;
+        int lt = lo, gt = hi - 1;
         int i = lo;
 
         int pivI = (int)(Math.random() * (hi - lo)) + lo;
         int pivNum = ary[pivI];
-        System.out.println(pivNum);
+        //System.out.println(pivNum);
 
         while(i <= gt){
             if(ary[i] < pivNum){
@@ -85,11 +84,35 @@ public class Quick{
         // Arrays.toString(ary);
     }
 
-    // public static void quicksort(int[] ary){
-    //     quicksortH(ary, 0, ary.length);
-    // }
+    public static void quicksort(int[] ary){
+        quicksortH(ary, 0, ary.length);
+    }
 
-    // public static void quicksort
+    public static void quicksortH(int[] ary, int lo, int hi){
+        int lt = lo, gt = hi - 1;
+        int i = lo;
+
+        int pivI = (int)(Math.random() * (hi - lo)) + lo;
+        int pivNum = ary[pivI];
+
+        while(i <= gt){
+            if(ary[i] < pivNum){
+                swap(ary, i, lt);
+                i++;
+                lt++;
+            } else if(ary[i] > pivNum){
+                swap(ary, i, gt);
+                gt--;
+            } else {
+                i++;
+            }
+        }
+
+        if(hi - lo > 2){
+            quicksortH(ary, lo, lt);
+            quicksortH(ary, gt, hi);
+        }
+    }
 
     // public static void quickDutch(int[] ary){
     //     quickDutchH(ary, 0, ary.length);
@@ -118,7 +141,8 @@ public class Quick{
         // System.out.println(Arrays.toString(ary));
         System.out.println(Arrays.toString(ary));
         //Quick.dutch(ary, 0, ary.length);
-        Quick.partition(ary, 0, ary.length);
+        //Quick.partition(ary, 0, ary.length);
+        Quick.quicksort(ary);
         System.out.println(Arrays.toString(ary));
     }
 }
