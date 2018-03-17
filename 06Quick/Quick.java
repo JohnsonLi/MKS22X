@@ -48,10 +48,10 @@ public class Quick{
     // }
 
     // public static void quicksortOld(int[] ary){
-    //     quickH(ary, 0, ary.length - 1);
+    //     quickHOld(ary, 0, ary.length - 1);
     // }
 
-    // public static void quickH(int[] ary, int start, int end){
+    // public static void quickHOld(int[] ary, int start, int end){
     //     if(end >= start){
     //         int index = partition(ary, start, end);
     //         quickH(ary, start, index - 1);
@@ -60,11 +60,13 @@ public class Quick{
     // }
 
     private static void partition(int[] ary, int lo, int hi){
-        int gt = hi - 1;
         int lt = lo;
+        int gt = hi - 1;
         int i = lo;
-        int pivNum = ary[i];
-        //System.out.println(pivNum);
+
+        int pivI = (int)(Math.random() * (hi - lo)) + lo;
+        int pivNum = ary[pivI];
+        System.out.println(pivNum);
 
         while(i <= gt){
             if(ary[i] < pivNum){
@@ -106,7 +108,7 @@ public class Quick{
     // }
 
     public static void main(String[] args) {
-        int[] ary = {999,999,999,4,1,0,3,2,999,999,999};/*{12,23213,434,34,34,34,34,34,213123,21323,2323,123,123,123,444444};*//*{1,1,1,1,1,1,1,1,1,2,2,1,1,2,2,2,0,0,0,0,1,1,1,2,2};*/
+        int[] ary = /*{999,999,999,4,1,0,3,2,999,999,999};*/{12,23213,434,34,34,34,34,34,213123,21323,2323,123,123,123,444444};/*{1,1,1,1,1,1,2,2,1,1,2,2,2,0,0,0,0,1,2,2};*/
         // System.out.println(Arrays.toString(ary));
         // Quick.quicksort(ary);
         // System.out.println(Arrays.toString(ary));
