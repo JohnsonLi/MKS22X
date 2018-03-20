@@ -89,7 +89,6 @@ public class Quick{
         int lo = 0, hi = ary.length;
         int[] lohi = partition(ary, lo, hi);
         
-        k -= 1;
         while(!(k >= lohi[0] && k <= lohi[1])){
             if(lohi[0] > k){
                 hi = lohi[0];
@@ -134,7 +133,7 @@ public class Quick{
     }
 
     // public static void main(String[] args) {
-    //     int[] ary = /*{999,999,999,4,1,0,3,2,999,999,999};*/
+    //     int[] ary = {999,999,999,4,1,0,3,2,999,999,999};
     //     /*{12,23213,434,34,34,34,34,34,213123,21323,2323,123,123,123,444444};*/
     //     /*{1,1,1,1,1,1,2,2,1,1,2,2,2,0,0,0,0,1,2,2};*/
     //     /*{10,9,8,7,6,5,4,4,4,4,44,3,2,1,55,66,77,33,22,111111,55345,75};*/
@@ -146,11 +145,11 @@ public class Quick{
     //     // System.out.println(Arrays.toString(ary));
     //     // System.out.println(Quick.partition(ary, 0, ary.length - 1));
     //     // System.out.println(Arrays.toString(ary));
-    //     System.out.println(Arrays.toString(ary));
+    //    // System.out.println(Arrays.toString(ary));
     //     //Quick.dutch(ary, 0, ary.length);
     //     //System.out.println(Arrays.toString(Quick.partition(ary, 0, ary.length)));
-    //     Quick.quicksort(ary);
-    //     //System.out.println(Quick.quickselect(ary, 9));
-    //     System.out.println(Arrays.toString(ary));
+    //     //Quick.quicksort(ary);
+    //     //System.out.println(Quick.quickselect(ary, 5));
+    //     //System.out.println(Arrays.toString(ary));
     // }
 }
