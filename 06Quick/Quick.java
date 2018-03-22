@@ -103,7 +103,9 @@ public class Quick{
     }
 
     public static void quicksort(int[] ary){
-        quicksortH(ary, 0, ary.length);
+        if(ary.length  != 0){
+            quicksortH(ary, 0, ary.length);
+        }
     }
 
     public static void quicksortH(int[] ary, int lo, int hi){
