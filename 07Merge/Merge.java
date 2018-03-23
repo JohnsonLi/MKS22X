@@ -53,6 +53,18 @@ public class Merge{
     //     }
     // }
 
+    private static void insertionSort(int[] ary, int lo, int hi){
+        for (int i = lo; i < hi; i++){
+            for (int ii = i; ii > 0; ii--){
+                if (ary[ii] < ary[ii - 1]){
+                    int temp = ary[ii - 1];
+                    ary[ii - 1] = ary[ii];
+                    ary[ii] = temp ;
+                }
+            }
+        }
+    }
+
     public static void merge(int[] ary, int[] temp, int left, int right){
 
         int mid = (left + right) / 2 + 1;
@@ -91,7 +103,12 @@ public class Merge{
     }
 
     public static void mergesortH(int[] ary, int[] temp, int start, int end){
-        
+        //insert insertion sort
+        // if(ary.length < ){
+        //     insertionSort(ary, 0, ary.length);
+        //     return;
+        // }
+
         for(int i = start; i < end; i++){
             temp[i] = ary[i];
          }
@@ -119,4 +136,10 @@ public class Merge{
     //     System.out.println(Arrays.toString(ary));
     // }
 
+    public static void main(String[] args) {
+        int[] ary = {24234,234242,43434,1215,6,7,89,3};
+        int[] ary1 = {-2,-5235,234,67};
+        Merge.insertionSort(ary1, 0, ary.length);
+        System.out.println(Arrays.toString(ary1));
+    }
 }
