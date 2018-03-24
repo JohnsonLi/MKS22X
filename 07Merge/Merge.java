@@ -54,13 +54,13 @@ public class Merge{
     // }
 
     private static void insertionSort(int[] ary, int lo, int hi){
-        for (int i = lo; i < hi; i++){
-            for (int ii = i; ii > 0; ii--){
-                if (ary[ii] < ary[ii - 1]){
-                    int temp = ary[ii - 1];
-                    ary[ii - 1] = ary[ii];
-                    ary[ii] = temp ;
-                }
+        for (int i = lo + 1; i <= hi - 1; i++){
+            int j = i;
+            while(j > 0 && ary[j] < ary[j - 1]){
+                int temp = ary[j];
+                ary[j] = ary[j - 1];
+                ary[j - 1] = temp;
+                j--;
             }
         }
     }
@@ -103,11 +103,10 @@ public class Merge{
     }
 
     public static void mergesortH(int[] ary, int[] temp, int start, int end){
-        //insert insertion sort
-        // if(ary.length < ){
-        //     insertionSort(ary, 0, ary.length);
-        //     return;
-        // }
+        if(end - start < 20){
+            insertionSort(ary, 0, ary.length);
+            return;
+        }
 
         for(int i = start; i < end; i++){
             temp[i] = ary[i];
@@ -136,10 +135,11 @@ public class Merge{
     //     System.out.println(Arrays.toString(ary));
     // }
 
-    public static void main(String[] args) {
-        int[] ary = {24234,234242,43434,1215,6,7,89,3};
-        int[] ary1 = {-2,-5235,234,67};
-        Merge.insertionSort(ary1, 0, ary.length);
-        System.out.println(Arrays.toString(ary1));
-    }
+    // public static void main(String[] args) {
+    //     int[] ary = {24234,234242,43434,1215,6,7,89,3};
+    //     int[] ary1 = {-2,-5235,234,67,13,123123,23123,12313};
+    //     System.out.println(Arrays.toString(ary));
+    //     Merge.insertionSort(ary, 0, ary.length);
+    //     System.out.println(Arrays.toString(ary));
+    // }
 }
