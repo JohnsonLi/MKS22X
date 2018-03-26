@@ -103,7 +103,7 @@ public class Merge{
     }
 
     public static void mergesortH(int[] ary, int[] temp, int start, int end){
-        if(end - start < 20){
+        if(ary.length < 20){
             insertionSort(ary, 0, ary.length);
             return;
         }

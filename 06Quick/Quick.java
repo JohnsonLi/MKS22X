@@ -121,10 +121,10 @@ public class Quick{
     }
 
     public static void quicksortH(int[] ary, int lo, int hi){
-        // if(hi - lo < 20){
-        //     insertionSort(ary, 0, ary.length);
-        //     return;
-        // }
+        if(ary.length < 20){
+            insertionSort(ary, 0, ary.length);
+            return;
+        }
 
         int lt = lo, gt = hi - 1;
         int i = lo;
