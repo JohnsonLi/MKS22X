@@ -115,16 +115,16 @@ public class Quick{
     }
 
     public static void quicksort(int[] ary){
-        if(ary.length  != 0){
+        if(ary.length != 0){
             quicksortH(ary, 0, ary.length);
         }
     }
 
     public static void quicksortH(int[] ary, int lo, int hi){
-        if(hi - lo < 20){
-            insertionSort(ary, 0, ary.length);
-            return;
-        }
+        // if(hi - lo < 20){
+        //     insertionSort(ary, 0, ary.length);
+        //     return;
+        // }
 
         int lt = lo, gt = hi - 1;
         int i = lo;
@@ -155,9 +155,9 @@ public class Quick{
     //     int[] ary = //{999,999,999,4,1,0,3,2,999,999,999};
     //     //{12,23213,434,34,34,34,34,34,213123,21323,2323,123,123,123,444444};
     //     /*{1,1,1,1,1,1,2,2,1,1,2,2,2,0,0,0,0,1,2,2};*/
-    //     /*{10,9,8,7,6,5,4,4,4,4,44,3,2,1,55,66,77,33,22,111111,55345,75};*/
+    //     {10,9,8,7,6,5,4,4,4,4,44,3,2,1,55,66,77,33,22,111111,55345,75};
     //     /*{1,2,3,4,5,6,7,8,9};*/
-    //     {-123,-34,-123,244324,-3,4442342,-3535,312313};
+    //     // {-123,-34,-123,244324,-3,4442342,-3535,312313};
     //     System.out.println(Arrays.toString(ary));
     //     Quick.quicksort(ary);
     //     System.out.println(Arrays.toString(ary));
