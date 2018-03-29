@@ -103,10 +103,10 @@ public class Merge{
     }
 
     public static void mergesortH(int[] ary, int[] temp, int start, int end){
-        if(ary.length < 20){
-            insertionSort(ary, 0, ary.length);
-            return;
-        }
+        // if(ary.length < 20){
+        //     insertionSort(ary, 0, ary.length);
+        //     return;
+        // }
 
         for(int i = start; i < end; i++){
             temp[i] = ary[i];
@@ -119,6 +119,8 @@ public class Merge{
             mergesortH(temp, ary, mid + 1, end);
             merge(ary, temp, start, end);
         }
+
+
     }
 
     // public static void main(String[] args) {
