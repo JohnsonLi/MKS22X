@@ -119,8 +119,6 @@ public class Merge{
             mergesortH(temp, ary, mid + 1, end);
             merge(ary, temp, start, end);
         }
-
-
     }
 
     // public static void main(String[] args) {
