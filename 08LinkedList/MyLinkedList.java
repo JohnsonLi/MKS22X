@@ -1,20 +1,26 @@
 public class MyLinkedList{
 
     Node first, last;
-    int length;
+    int size;
 
     public MyLinkedList(){
         first = null;
         last = null;
-        length = 0;
+        size = 0;
     }
 
-    public boolean add(int value){
-        Node new = new Node(value);
-        first = new.getValue();
+    public boolean add(Integer value){
+        Node toAdd = new Node(value);
+        if(size == 0){
+            first = toAdd;
+            last = toAdd;
+        } else {
+            
+        }
+
         
 
-        length++;
+        size++;
         
     }
 
@@ -23,7 +29,7 @@ public class MyLinkedList{
 
     private class Node{
         Node prev, next;
-        int data;
+        Integer data;
 
         public Node(data){
             this.prev = null;
