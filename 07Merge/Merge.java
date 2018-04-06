@@ -99,14 +99,19 @@ public class Merge{
     }
 
     public static void mergesort(int[] ary){
-        mergesortH(ary, new int[ary.length] ,0 ,ary.length - 1);
+        int[] temp = new int[ary.length];
+        //why does this fix it
+	    for(int i = 0; i < ary.length ; i ++){
+	        temp[i] = ary[i];
+        }
+        mergesortH(ary, temp, 0, ary.length - 1);
     }
 
     public static void mergesortH(int[] ary, int[] temp, int start, int end){
-        // if(ary.length < 20){
-        //     insertionSort(ary, 0, ary.length);
-        //     return;
-        // }
+        if(ary.length < 20){
+            insertionSort(ary, 0, ary.length);
+            return;
+        }
 
         for(int i = start; i < end; i++){
             temp[i] = ary[i];
@@ -129,6 +134,7 @@ public class Merge{
     //     //{2,1};
     //     //{-22,-1111};
     //     //{1};
+    //     {1,6,7,2,6,6};
 
     //     System.out.println(Arrays.toString(ary));
     //     Merge.mergesort(ary);
