@@ -108,6 +108,14 @@ public class MyLinkedList{
         return old;
     }
 
+    public boolean remove(Integer value){
+        if(indexOf(value) != -1){
+            remove(indexOf(value));
+            return true;
+        }
+        return false;
+    }
+
     public String toString(){
         String list = "[";
         Node node = first;
@@ -168,6 +176,7 @@ public class MyLinkedList{
     //     System.out.println(list.remove(0));                   //removing first thing
     //     System.out.println(list.remove(list.size() - 1));     //removing last thing
     //     System.out.println(list.remove(5));                   //removing in the middle
+    //     System.out.println(list.remove(new Integer(-3)));     //removing by value
     //     System.out.println(list.size());
     //     // list.remove(-1);
     //     // list.remove(2312);
