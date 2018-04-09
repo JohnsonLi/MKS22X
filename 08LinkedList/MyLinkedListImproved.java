@@ -1,9 +1,9 @@
-public class MyLinkedList{
+public class MyLinkedListImproved<T>{
 
     Node first, last;
     int size;
 
-    public MyLinkedList(){
+    public MyLinkedListImproved(){
         first = null;
         last = null;
         size = 0;
@@ -19,7 +19,7 @@ public class MyLinkedList{
         return size;
     }
 
-    public boolean add(Integer value){
+    public boolean add(T value){
         Node toAdd = new Node(value);
         if(size() == 0){
             first = toAdd;
@@ -42,24 +42,24 @@ public class MyLinkedList{
         return node;
     }
 
-    public Integer get(int index){
+    public T get(int index){
         if(index < 0 || index >= size()){
             throw new IndexOutOfBoundsException();
         }
         return getNode(index).getValue();
     }
 
-    public Integer set(int index, Integer value){
+    public T set(int index, T value){
         if(index < 0 || index >= size()){
             throw new IndexOutOfBoundsException();
         }
         Node node = getNode(index);
-        Integer old = node.getValue();
+        T old = node.getValue();
         node.setValue(value);
         return old;
     }
 
-    public int indexOf(Integer value){
+    public int indexOf(T value){
         for(int i = 0; i < size(); i++){
             if(getNode(i).getValue().equals(value)){
                 return i;
@@ -68,7 +68,7 @@ public class MyLinkedList{
         return -1;
     }
 
-    public void add(int index, Integer value){
+    public void add(int index, T value){
         if(index < 0 || index > size()){
             throw new IndexOutOfBoundsException();
         }
@@ -90,12 +90,12 @@ public class MyLinkedList{
         size++;
     }
 
-    public Integer remove(int index){
+    public T remove(int index){
         if(index < 0 || index >= size()){
             throw new IndexOutOfBoundsException();
         }
         Node toRemove = getNode(index);
-        Integer old = toRemove.getValue();
+        T old = toRemove.getValue();
         if(index == 0){
             first = toRemove.getNext();
         } else if(index == size() - 1){
@@ -108,7 +108,7 @@ public class MyLinkedList{
         return old;
     }
 
-    public boolean remove(Integer value){
+    public boolean remove(T value){
         if(indexOf(value) != -1){
             remove(indexOf(value));
             return true;
@@ -133,9 +133,9 @@ public class MyLinkedList{
 
     private class Node{
         Node prev, next;
-        Integer data;
+        T data;
 
-        public Node(Integer data){
+        public Node(T data){
             this.prev = null;
             this.next = null;
             this.data = data;
@@ -143,11 +143,11 @@ public class MyLinkedList{
 
         public Node getNext(){return next;}
         public Node getPrev(){return prev;}
-        public Integer getValue(){return data;}
+        public T getValue(){return data;}
 
         public void setNext(Node node){this.next = node;}
         public void setPrev(Node node){this.prev = node;}
-        public void setValue(Integer value){this.data = value;}
+        public void setValue(T value){this.data = value;}
 
         public String toString(){
             return "" + data;
@@ -176,7 +176,7 @@ public class MyLinkedList{
     //     System.out.println(list.remove(0));                   //removing first thing
     //     System.out.println(list.remove(list.size() - 1));     //removing last thing
     //     System.out.println(list.remove(5));                   //removing in the middle
-    //     System.out.println(list.remove(new Integer(-3)));     //removing by value
+    //     System.out.println(list.remove(new T(-3)));     //removing by value
     //     System.out.println(list.size());
     //     // list.remove(-1);
     //     // list.remove(2312);
@@ -186,4 +186,9 @@ public class MyLinkedList{
     //     System.out.println(list);
     // }
 
+    public static void main(String[] args) {
+        MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
+        n.add("fwefew");
+        System.out.println(n);
+    }
 }
