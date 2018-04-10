@@ -1,4 +1,6 @@
-public class MyLinkedListImproved<T>{
+import java.util.*;
+
+public class MyLinkedListImproved<T /*extends Comparable<T>*/> implements Iterable<T>{
 
     Node first, last;
     int size;
@@ -131,6 +133,48 @@ public class MyLinkedListImproved<T>{
         return list;
     }
 
+    public String toStringReverse() {
+        String list = "[";
+        Node node = last;
+        for (int i = size-1; i >= 0; i--) {
+            if(i == size() - 1){
+                list += node;
+            } else {
+                list += node + ", ";
+            }
+            node = node.getPrev();
+        }
+        list += "]";
+        return list;
+    }
+
+    public Iterator<T> iterator(){
+        return new LITerator(first);
+    }
+
+    public class LITerator implements Iterator<T>{
+        private Node node;
+
+        public LITerator(Node first){
+            node = first;
+        }
+
+        public boolean hasNext(){
+            return first != null;
+        }
+
+        public T next(){
+            if(!hasNext()){
+                throw new NoSuchElementException();
+            }
+            T data = node.getValue();
+            node = node.getNext();
+            return data;
+        }
+
+
+    }
+
     private class Node{
         Node prev, next;
         T data;
@@ -155,7 +199,7 @@ public class MyLinkedListImproved<T>{
     }
 
     // public static void main(String[] args) {
-    //     MyLinkedList list = new MyLinkedList();
+    //     MyLinkedListImproved<Integer> list = new MyLinkedListImproved<>();
     //     System.out.println(list);
     //     list.add(0);
     //     list.add(1);
@@ -176,7 +220,7 @@ public class MyLinkedListImproved<T>{
     //     System.out.println(list.remove(0));                   //removing first thing
     //     System.out.println(list.remove(list.size() - 1));     //removing last thing
     //     System.out.println(list.remove(5));                   //removing in the middle
-    //     System.out.println(list.remove(new T(-3)));     //removing by value
+    //     System.out.println(list.remove(new Integer(-3)));     //removing by value
     //     System.out.println(list.size());
     //     // list.remove(-1);
     //     // list.remove(2312);
@@ -184,11 +228,21 @@ public class MyLinkedListImproved<T>{
     //     //System.out.println(list.set(5, 55));
     //     //System.out.println(list.get(5));
     //     System.out.println(list);
+    //     System.out.println(list.reverseToString());
     // }
 
     public static void main(String[] args) {
         MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
         n.add("fwefew");
-        System.out.println(n);
+        n.add("efwef0");
+        n.add("efwef1");
+        n.add("efwef2");
+        n.add("efwef3");
+        // n.remove(0);
+        // System.out.println(n);
+
+        for(Node node : n){
+            System.out.println(node);
+        }
     }
 }
