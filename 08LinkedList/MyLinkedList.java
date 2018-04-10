@@ -73,15 +73,15 @@ public class MyLinkedList{
             throw new IndexOutOfBoundsException();
         }
         Node toAdd = new Node(value);
-        Node location = getNode(index);
         if(index == size()){
             add(value);
             return;
         } else if (index == 0){
-            toAdd.setNext(location);
-            location.setPrev(toAdd);
+            first.setPrev(toAdd);
+            toAdd.setNext(first);
             first = toAdd;
         } else {
+            Node location = getNode(index);
             toAdd.setPrev(location.getPrev());
             location.getPrev().setNext(toAdd);
             location.setPrev(toAdd);
