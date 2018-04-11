@@ -34,7 +34,7 @@ public class MyLinkedList{
         return true;
     }
 
-    public Node getNode(int index){
+    private Node getNode(int index){
         Node node = first;
         for(int i = 0; i < index; i++){
             node = node.getNext();

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MyLinkedListImproved<T /*extends Comparable<T>*/> implements Iterable<T>{
+public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T>{
 
     Node first, last;
     int size;
@@ -36,7 +36,7 @@ public class MyLinkedListImproved<T /*extends Comparable<T>*/> implements Iterab
         return true;
     }
 
-    public Node getNode(int index){
+    private Node getNode(int index){
         Node node = first;
         for(int i = 0; i < index; i++){
             node = node.getNext();
@@ -160,20 +160,21 @@ public class MyLinkedListImproved<T /*extends Comparable<T>*/> implements Iterab
         }
 
         public boolean hasNext(){
-            return first != null;
+            return node != null;
         }
 
         public T next(){
             if(!hasNext()){
                 throw new NoSuchElementException();
-            }
+            } 
             T data = node.getValue();
             node = node.getNext();
             return data;
         }
-
-
     }
+
+    // public int compareTo(T thing){
+    // }
 
     private class Node{
         Node prev, next;
@@ -231,18 +232,18 @@ public class MyLinkedListImproved<T /*extends Comparable<T>*/> implements Iterab
     //     System.out.println(list.reverseToString());
     // }
 
-    public static void main(String[] args) {
-        MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
-        n.add("fwefew");
-        n.add("efwef0");
-        n.add("efwef1");
-        n.add("efwef2");
-        n.add("efwef3");
-        // n.remove(0);
-        // System.out.println(n);
+    // public static void main(String[] args) {
+    //     MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
+    //     n.add("fwefew");
+    //     n.add("efwef0");
+    //     n.add("efwef1");
+    //     n.add("efwef2");
+    //     n.add("efwef3");
+    //     // n.remove(0);
+    //     // System.out.println(n);
 
-        for(Node node : n){
-            System.out.println(node);
-        }
-    }
+    //     for(String value : n){
+    //         System.out.println(value);
+    //     }
+    // }
 }
