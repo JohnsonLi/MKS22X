@@ -173,8 +173,27 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
         }
     }
 
-    // public int compareTo(T thing){
-    // }
+    public int max(){
+        if(size() == 0){
+            return -1;
+        }
+        T max = this.first.getValue();
+        for(T value : this){
+            max = value.compareTo(max) > 0 ? value : max;
+        }
+        return this.indexOf(max);
+    }
+
+    public int min(){
+        if(size() == 0){
+            return -1;
+        }
+        T min = this.first.getValue();
+        for(T value : this){
+            min = value.compareTo(min) < 0 ? value : min;
+        }
+        return this.indexOf(min);
+    }
 
     private class Node{
         Node prev, next;
@@ -245,5 +264,34 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
     //     for(String value : n){
     //         System.out.println(value);
     //     }
+    // }
+
+    // public static void main(String[] args) {
+    //     MyLinkedListImproved<Integer> n = new MyLinkedListImproved<>();
+    //     // n.add(-21312123);
+    //     // n.add(33242342);
+    //     // n.add(3);
+    //     // n.add(3);
+    //     // n.add(3);
+    //     // n.add(3);
+    //     // n.add(1);
+    //     // n.add(99);
+    //     // n.add(3);
+    //     // n.add(1293120);
+    //     // n.add(-21312);
+    //     System.out.println(n.min());
+    //     System.out.println(n);
+    // }
+
+    // public static void main(String[] args) {
+    //     MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
+    //     n.add("z");
+    //     n.add("a");
+    //     n.add("b");
+    //     n.add("c");
+    //     n.add("d");
+    //     System.out.println(n);
+    //     System.out.println(n.min());
+    //     System.out.println(n.max());
     // }
 }
