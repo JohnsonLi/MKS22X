@@ -5,6 +5,9 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
     Node first, last;
     int size;
 
+    private Node getFirst(){return first;}
+    private Node getLast(){return last;}
+
     public MyLinkedListImproved(){
         first = null;
         last = null;
@@ -195,6 +198,20 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
         return this.indexOf(min);
     }
 
+    public void extend(MyLinkedListImproved<T> list){
+        if(size() == 0 && list.size() != 0){
+            first = list.getFirst();
+            last = list.getLast();
+            size = list.size();
+        } else if (list.size() != 0){
+            this.getLast().setNext(list.getFirst());
+            list.getFirst().setPrev(this.getLast());
+            this.last = list.getLast();
+            size += list.size();
+            list.clear();
+        }
+    }
+
     private class Node{
         Node prev, next;
         T data;
@@ -294,4 +311,17 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
     //     System.out.println(n.min());
     //     System.out.println(n.max());
     // }
+
+    public static void main(String[] args) {
+        MyLinkedListImproved<Integer> a = new MyLinkedListImproved<>();
+        MyLinkedListImproved<Integer> b = new MyLinkedListImproved<>();
+
+        a.add(1);
+        a.add(2);
+        b.add(3);
+        b.add(4);
+
+        a.extend(b);
+        System.out.println(a);
+    }
 }
