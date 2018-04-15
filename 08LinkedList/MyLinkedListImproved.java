@@ -178,10 +178,16 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
             return -1;
         }
         T max = this.first.getValue();
+        int indexCount = -1;
+        int maxIndex = 0;
         for(T value : this){
-            max = value.compareTo(max) > 0 ? value : max;
+            indexCount++;
+            if(value.compareTo(max) > 0){
+                max = value;
+                maxIndex = indexCount;
+            }
         }
-        return this.indexOf(max);
+        return maxIndex;
     }
 
     public int min(){
@@ -189,10 +195,16 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
             return -1;
         }
         T min = this.first.getValue();
+        int indexCount = -1;
+        int minIndex = 0;
         for(T value : this){
-            min = value.compareTo(min) < 0 ? value : min;
+            indexCount++;
+            if(value.compareTo(min) < 0){
+                min = value;
+                minIndex = indexCount;
+            }
         }
-        return this.indexOf(min);
+        return minIndex;
     }
 
     public void extend(MyLinkedListImproved<T> list){
@@ -298,31 +310,44 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
     // }
 
     // public static void main(String[] args) {
-    //     MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
-    //     n.add("z");
-    //     n.add("a");
-    //     n.add("b");
-    //     n.add("c");
-    //     n.add("d");
-    //     System.out.println(n);
+    //     // MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
+    //     // n.add("z");
+    //     // n.add("a");
+    //     // n.add("b");
+    //     // n.add("c");
+    //     // n.add("d");
+    //     // System.out.println(n);
+    //     // System.out.println(n.min());
+    //     // System.out.println(n.max());
+
+    //     MyLinkedListImproved<Integer> n = new MyLinkedListImproved<>();
+    //     n.add(0);
+    //     n.add(1);
+    //     n.add(2);
+    //     n.add(3);
+    //     n.add(-1111);
+    //     n.add(999);
+    //     n.add(4);
+    //     n.add(5);
+    //     n.add(391238);
     //     System.out.println(n.min());
     //     System.out.println(n.max());
     // }
 
-    public static void main(String[] args) {
-        MyLinkedListImproved<Integer> a = new MyLinkedListImproved<>();
-        MyLinkedListImproved<Integer> b = new MyLinkedListImproved<>();
+    // public static void main(String[] args) {
+    //     MyLinkedListImproved<Integer> a = new MyLinkedListImproved<>();
+    //     MyLinkedListImproved<Integer> b = new MyLinkedListImproved<>();
 
-        a.add(-1);
-        a.add(0);
-        a.add(1);
-        a.add(2);
-        b.add(3);
-        b.add(4);
-        b.add(5);
-        b.add(6);
+    //     a.add(-1);
+    //     a.add(0);
+    //     a.add(1);
+    //     a.add(2);
+    //     b.add(3);
+    //     b.add(4);
+    //     b.add(5);
+    //     b.add(6);
 
-        a.extend(b);
-        System.out.println(a);
-    }
+    //     a.extend(b);
+    //     System.out.println(a);
+    // }
 }
