@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PostFix{
+public class Calculator{
 
     public static Double eval(String operations){
         class Stack<E> extends LinkedList<E>{
