@@ -1,8 +1,5 @@
 import java.util.*;
 
-import com.sun.glass.ui.Size;
-import com.sun.javafx.iio.ios.IosDescriptor;
-
 public class PostFix{
 
     public static Double eval(String operations){
