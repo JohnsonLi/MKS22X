@@ -1,6 +1,7 @@
 public class MyDeque<E>{
 
     public E[] deck;
+    public int first = 0, last = 0, size = 0;
 
     @SuppressWarnings("unchecked")
     public MyDeque(){
@@ -16,8 +17,31 @@ public class MyDeque<E>{
     }
 
     public int size(){
-        return deck.length;
+        return size;
     }
+
+    @SuppressWarnings("unchecked")
+    public void resize(){
+        E[] new = (E[]) new Object[deck.length * 2];
+        for(int i = 0; i < size(); i++){
+            new[0] = deck[(front + i) % deck.length];
+        }
+        deck = new;
+    }
+
+    public void addFirst(T value){
+        if(value == null){
+            throw new NullPointerException();
+        }
+        if(size() == deck.length - 1){
+            resize();
+        }
+        
+
+    }
+
+
+
 
     
 
