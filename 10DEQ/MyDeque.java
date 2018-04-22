@@ -1,7 +1,7 @@
 public class MyDeque<E>{
 
     public E[] deck;
-    public int first = 0, last = 0, size = 0;
+    public int front = 0, back = 0, size = 0;
 
     @SuppressWarnings("unchecked")
     public MyDeque(){
@@ -22,32 +22,49 @@ public class MyDeque<E>{
 
     @SuppressWarnings("unchecked")
     public void resize(){
-        E[] new = (E[]) new Object[deck.length * 2];
-        for(int i = 0; i < size(); i++){
-            new[0] = deck[(front + i) % deck.length];
+        if (size() == deck.length - 1) {
+            E[] temp = (E[]) new Object[deck.length * 2];
+            for (int i = 0; i < size(); i++) {
+                temp[0] = deck[(front + i) % deck.length];
+            }
+            front = 0;
+            back = size() - 1;
+            deck = temp;
         }
-        deck = new;
     }
 
-    public void addFirst(T value){
+    public void addFirst(E value){
         if(value == null){
             throw new NullPointerException();
         }
-        if(size() == deck.length - 1){
-            resize();
-        }
-        
+        resize();
+        deck[(front + deck.length) % deck.length] = value;
+        front--; 
+        size++;
 
     }
 
-
+    public String toString(){
+        String deckStr = "[";
+        for(int i = 0; i < deck.length; i++){
+            if(i == deck.length - 1){
+                deckStr += deck[i] + "";
+            } else {
+                deckStr += deck[i] + ", ";
+            }
+        }
+        return deckStr += "]";
+    }
 
 
     
 
     public static void main(String[] args) {
-        MyDeque<Integer> n = new MyDeque<Integer>(167);
-        System.out.println(n.size());
+        MyDeque<Integer> n = new MyDeque<Integer>();
+        // System.out.println(n.size());
+        n.addFirst(1);
+        n.addFirst(2);
+        System.out.println(n.front);
     }
 
 
