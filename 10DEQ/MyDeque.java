@@ -1,6 +1,3 @@
-import java.io.ObjectInputStream.GetField;
-import java.util.*;
-
 public class MyDeque<E> {
 
     public E[] deck;
