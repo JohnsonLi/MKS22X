@@ -1,33 +1,33 @@
 import java.util.*;
 
-public class MyHeap/*<String extends Comparable<String>>*/{
+public class MyHeap<T extends Comparable<T>>{
     public boolean max = true;
-    public int[] heap;
+    private T[] heap;
     public int size = 0;
 
-    // @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public MyHeap(){
-        heap = new int[1];
+        heap = (T[])new Comparable[10];
     }
 
-    // @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public MyHeap(boolean e){
         max = e;
-        heap = new int[1];
+        heap = (T[])new Comparable[10];
     }
 
     public int size(){return size;}
 
     private void swap(int a, int b){
-        int temp = heap[a];
+        T temp = heap[a];
         heap[a] = heap[b];
         heap[b] = temp;
     }
 
-    // @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public void resize(){
         if(size() == heap.length){
-            int[] temp = new int[heap.length * 2];
+            T[] temp = (T[])new Comparable[heap.length * 2];;
             for(int i = 0; i < heap.length; i++){
                 temp[i] = heap[i];
             }
@@ -46,24 +46,27 @@ public class MyHeap/*<String extends Comparable<String>>*/{
         return (index - 1) / 2;
     }
 
-    private boolean hasChildren(int index){
-        return 2 * index + 1 < heap.length - 1  && heap[2 * index + 1] != 0 ||
-               2 * index + 2 < heap.length - 1  && heap[2 * index + 2] != 0;
+    private int getLChild(int index){
+        return 2 * index + 1;
     }
 
-    // private int getRChild(int index){
-    //     return 2 * index + 1;
-    // }
+    private boolean hasLChild(int index){
+        return 2 * index + 1 < size() && heap[2 * index + 1] != null;
+    }
 
-    // private int getLChild(int index){
-    //     return 2 * index + 2;
-    // }
+    private int getRChild(int index){
+        return 2 * index + 2;
+    }
 
-    public int peek(){
+    private boolean hasRChild(int index){
+        return 2 * index + 2 < size() && heap[2 * index + 2] != null;
+    }    
+
+    public T peek(){
         return heap[0];
     }
 
-    public void add(int s){
+    public void add(T s){
         resize();
         heap[size] = s;
         if(max){
@@ -75,10 +78,7 @@ public class MyHeap/*<String extends Comparable<String>>*/{
     }
 
     private void pushUpMax(int index){
-        // if(!hasParent(index) || heap[index].compareTo(heap[getParent(index)]) < 0){
-        //     return;
-        // } 
-        if(!hasParent(index) || heap[index] < heap[getParent(index)]){
+        if(!hasParent(index) || heap[index].compareTo(heap[getParent(index)]) < 0){
             return;
         } 
         swap(index, getParent(index));
@@ -86,19 +86,17 @@ public class MyHeap/*<String extends Comparable<String>>*/{
     }    
 
     private void pushUpMin(int index){
-        // if(!hasParent(index) || heap[index].compareTo(heap[getParent(index)]) > 0){
-        //     return;
-        // } 
-        if(!hasParent(index) || heap[index] > heap[getParent(index)]){
+        if(!hasParent(index) || heap[index].compareTo(heap[getParent(index)]) > 0){
             return;
-        }
+        } 
         swap(index, getParent(index));
         pushUpMin(getParent(index));
     }  
 
-    public int remove(){
-        int removed = heap[0];
+    public T remove(){
+        T removed = heap[0];
         swap(0, size() - 1);
+        heap[size() - 1] = null;
         if(max){
             pushDownMax(0);
         } else {
@@ -109,10 +107,32 @@ public class MyHeap/*<String extends Comparable<String>>*/{
     }
 
     public void pushDownMax(int index){
-        if(!hasChildren(index) || )
+        if(!(hasLChild(index) || hasRChild(index))){
+            return;
+        }
+
+        if(heap[getLChild(index)].compareTo(heap[getRChild(index)]) > 0){
+            swap(index, getLChild(index));
+            pushDownMax(getLChild(index));
+        } else {
+            swap(index, getRChild(index));
+            pushDownMax(getRChild(index));
+        }
     }
 
+    public void pushDownMin(int index){
+        if(!(hasLChild(index) || hasRChild(index))){
+            return;
+        }
 
+        if(heap[getLChild(index)].compareTo(heap[getRChild(index)]) < 0){
+            swap(index, getLChild(index));
+            pushDownMin(getLChild(index));
+        } else {
+            swap(index, getRChild(index));
+            pushDownMin(getRChild(index));
+        }
+    }
 
     public String toString(){
         String array = "[";
@@ -126,24 +146,24 @@ public class MyHeap/*<String extends Comparable<String>>*/{
         return array + "]";
     }
 
-    public static void main(String[] args) {
-        MyHeap n = new MyHeap();
-        System.out.println(n);
-        n.add(24);
-        n.add(30);
-        n.add(54);
-        n.add(16);
-        n.add(3);
-        n.add(7);
-        System.out.println(n.peek());
-        // n.add(100);
-        // n.add("a");
-        // n.add("b");
-        // n.add("c");
-        // n.add("d");
-        // n.add("e");
-        System.out.println(n);
-    }
+    // public static void main(String[] args) {
+    //     MyHeap<Integer> n = new MyHeap<>(false);
+    //     n.add(24);
+    //     n.add(30);
+    //     n.add(54);
+    //     n.add(16);
+    //     n.add(3);
+    //     n.add(7);
+    //     System.out.println(n);
+    //     n.remove();
+    //     // n.add(100);
+    //     // n.add("a");
+    //     // n.add("b");
+    //     // n.add("c");
+    //     // n.add("d");
+    //     // n.add("e");
+    //     System.out.println(n);
+    // }
 
 }
 
