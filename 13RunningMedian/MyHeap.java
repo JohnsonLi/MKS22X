@@ -112,7 +112,7 @@ public class MyHeap<T extends Comparable<T>>{
     }
 
     public void pushDownMax(int index){
-        if(!(hasLChild(index) && hasRChild(index))){
+        if(!(hasLChild(index) || hasRChild(index))){
             return;
         }
         if(hasLChild(index) && hasRChild(index)){
@@ -135,11 +135,12 @@ public class MyHeap<T extends Comparable<T>>{
     }
 
     public void pushDownMin(int index){
-        if(!(hasLChild(index) && hasRChild(index))){
+        if(!(hasLChild(index) || hasRChild(index))){
             return;
         }
         if(hasLChild(index) && hasRChild(index)){
             if(heap[index].compareTo(heap[getLChild(index)]) < 0 && heap[index].compareTo(heap[getRChild(index)]) < 0){
+                // System.out.println("Dqwdw");
                 return;
             } else {
                 if(heap[getLChild(index)].compareTo(heap[getRChild(index)]) < 0){
@@ -171,24 +172,24 @@ public class MyHeap<T extends Comparable<T>>{
 
     // public static void main(String[] args) {
     //     MyHeap<Integer> n = new MyHeap<>(false);
-    //     n.add(24);
-    //     n.add(30);
-    //     n.add(54);
-    //     n.add(16);
+    //     // n.add(24);
+    //     // n.add(30);
+    //     // n.add(54);
+    //     // n.add(16);
+    //     // n.add(3);
+    //     // n.add(7);
     //     n.add(3);
-    //     n.add(7);
-    //     n.remove();
+    //     n.add(5);
+    //     n.add(387);
     //     System.out.println(n);
     //     n.remove();
     //     System.out.println(n);
-    //     n.remove();
     //     // n.add(100);
     //     // n.add("a");
     //     // n.add("b");
     //     // n.add("c");
     //     // n.add("d");
     //     // n.add("e");
-    //     System.out.println(n);
     // }
 
 }
