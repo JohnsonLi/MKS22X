@@ -144,23 +144,23 @@ public class Maze{
         while(in.hasNext()){
             String line ="";
             for(char c : in.nextLine().toCharArray()){
-            if(c == '#'){
-                line+= color(37,47)+c;
-            }
-            else if(c == '@'){
-                line+= color(33,40)+c;
-            }
-            else if(c == '?'){
-                line+= color(37,42)+c;
-            }
-            else if(c == '.'){
-                line+= color(36,40)+c;
-            }
-            else if(c == ' '){
-                line+= color(35,40)+c;
-            }else{
-                line+=color(37,40)+c;
-            }
+                if(c == '#'){
+                    line+= color(37,47)+c;
+                }
+                else if(c == '@'){
+                    line+= color(33,40)+c;
+                }
+                else if(c == '?'){
+                    line+= color(37,42)+c;
+                }
+                else if(c == '.'){
+                    line+= color(36,40)+c;
+                }
+                else if(c == ' '){
+                    line+= color(35,40)+c;
+                }else{
+                    line+=color(37,40)+c;
+                }
 
             }
             ans += line+color(37,40)+"\n";

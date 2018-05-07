@@ -8,4 +8,14 @@ public class FrontierQueue{
         locations.add(n);
     }
 
+    public Location next(){
+        locations.removeFirst();
+    }
+
+    public boolean hasNext(){
+        return locations.getNext() != null;
+    }
+
+    
+
 }

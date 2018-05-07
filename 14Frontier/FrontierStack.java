@@ -12,4 +12,8 @@ public class FrontierStack{
         return locations.pop();
     }
 
+    public boolean hasNext(){
+        
+    }
+
 }
