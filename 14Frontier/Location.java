@@ -11,5 +11,5 @@ public class Location{
 
     public int getX(){return x;}
     public int getY(){return y;}
-    public Location getPrev(){return previous;}
+    public Location getPrevious(){return previous;}
 }
