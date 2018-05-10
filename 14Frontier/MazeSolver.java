@@ -29,19 +29,12 @@ public class MazeSolver{
       //  add all the locations to the frontier
         while(frontier.hasNext()){
             if(animate){
-                clearTerminal();
-                System.out.println(this);
-                wait(20);
+                // clearTerminal();
+                System.out.println(maze.toStringColor());
             }
             
             Location location = frontier.next();
-            Location[] neighbors = maze.getNeighbors(location);
-            for(int i = 0; i < neighbors.length;i++){
-                if(neighbors[i] != null){
-                    frontier.add(neighbors[i]);
-                    maze.set(neighbors[i].getX(),neighbors[i].getY(),'?');
-                }
-            }
+            // Location[] neighbors = maze.getNeighbors(location);
             if(location.getX() == maze.getEnd().getX() && location.getY() == maze.getEnd().getY()){
                 while (location != null) {
                     System.out.println(maze.toStringColor());
@@ -51,9 +44,10 @@ public class MazeSolver{
                 // maze.set(maze.getStart().getX(),maze.getStart().getY(),'@');
                 return true;
             }
-            maze.set(location.getX(),location.getY(), '.');
+            // maze.set(location.getX(),location.getY(), '.');
             for(Location n : maze.getNeighbors(location)){
                 if(n != null){
+                    
                     frontier.add(n);
                 }
             }
