@@ -42,7 +42,6 @@ public class MazeSolver{
                     maze.set(neighbors[i].getX(),neighbors[i].getY(),'?');
                 }
             }
-            maze.set(location.getX(),location.getY(), '.');
             if(location.getX() == maze.getEnd().getX() && location.getY() == maze.getEnd().getY()){
                 while (location != null) {
                     System.out.println(maze.toStringColor());
@@ -52,6 +51,7 @@ public class MazeSolver{
                 // maze.set(maze.getStart().getX(),maze.getStart().getY(),'@');
                 return true;
             }
+            maze.set(location.getX(),location.getY(), '.');
             for(Location n : maze.getNeighbors(location)){
                 if(n != null){
                     frontier.add(n);
@@ -87,6 +87,6 @@ public class MazeSolver{
 
     public static void main(String[] args) {
         MazeSolver n = new MazeSolver("maze.txt");
-        n.solve(1);
+        n.solve(0);
     }
 }
