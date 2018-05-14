@@ -1,18 +1,19 @@
+
 //BFS
 import java.util.*;
 
-public class FrontierQueue implements Frontier{
+public class FrontierQueue implements Frontier {
     private LinkedList<Location> locations = new LinkedList<>();
 
-    public void add(Location n){
+    public void add(Location n) {
         locations.addLast(n);
     }
 
-    public Location next(){
+    public Location next() {
         return locations.removeFirst();
     }
 
-    public boolean hasNext(){
+    public boolean hasNext() {
         return locations.size() >= 1;
     }
 }

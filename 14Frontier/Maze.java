@@ -19,21 +19,17 @@ public class Maze {
         Location[] locations = new Location[4];
         int x = L.getX();
         int y = L.getY();
-        if ((x + 1 >= 0) && (x + 1 < maze[0].length)
-                && ((maze[x + 1][y] == ' ') || (maze[x + 1][y] == 'E') || (maze[x + 1][y] == '?'))) {
-            locations[0] = new Location(x + 1, y, L, this);
+        if ((x + 1 >= 0) && (x + 1 < maze.length) && ((maze[x + 1][y] == ' ') || (maze[x + 1][y] == 'E'))) {
+            locations[0] = new Location(x + 1, y, L, Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY()));
         }
-        if ((x - 1 >= 0) && (x - 1 < maze[0].length)
-                && ((maze[x - 1][y] == ' ') || (maze[x - 1][y] == 'E') || (maze[x - 1][y] == '?'))) {
-            locations[1] = new Location(x - 1, y, L, this);
+        if ((x - 1 >= 0) && (x - 1 < maze.length) && ((maze[x - 1][y] == ' ') || (maze[x - 1][y] == 'E'))) {
+            locations[1] = new Location(x - 1, y, L, Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY()));
         }
-        if ((y + 1 >= 0) && (y + 1 < maze[0].length)
-                && ((maze[x][y + 1] == ' ') || (maze[x][y + 1] == 'E') || (maze[x][y + 1] == '?'))) {
-            locations[2] = new Location(x, y + 1, L, this);
+        if ((y + 1 >= 0) && (y + 1 < maze[0].length) && ((maze[x][y + 1] == ' ') || (maze[x][y + 1] == 'E'))) {
+            locations[2] = new Location(x, y + 1, L, Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY()));
         }
-        if ((y - 1 >= 0) && (y - 1 < maze[0].length)
-                && ((maze[x][y - 1] == ' ') || (maze[x][y - 1] == 'E') || (maze[x][y - 1] == '?'))) {
-            locations[3] = new Location(x, y - 1, L, this);
+        if ((y - 1 >= 0) && (y - 1 < maze[0].length) && ((maze[x][y - 1] == ' ') || (maze[x][y - 1] == 'E'))) {
+            locations[3] = new Location(x, y - 1, L, Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY()));
         }
         return locations;
     }
@@ -111,8 +107,8 @@ public class Maze {
          * start/end Locations may need more information later when we add other kinds
          * of frontiers!
          */
-        end = new Location(endr, endc, null, this);
-        start = new Location(startr, startc, null, this);
+        end = new Location(endr, endc, null, 0);
+        start = new Location(startr, startc, null, 0);
     }
 
     public String toStringColor() {

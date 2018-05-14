@@ -1,18 +1,19 @@
+
 //DFS
 import java.util.*;
 
-public class FrontierStack implements Frontier{
+public class FrontierStack implements Frontier {
     private Stack<Location> locations = new Stack<>();
 
-    public void add(Location n){
+    public void add(Location n) {
         locations.push(n);
     }
 
-    public Location next(){
+    public Location next() {
         return locations.pop();
     }
 
-    public boolean hasNext(){
+    public boolean hasNext() {
         return locations.size() >= 1;
     }
 
