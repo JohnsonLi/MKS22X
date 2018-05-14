@@ -23,6 +23,9 @@ public class MazeSolver {
             frontier = new FrontierStack();
         } else if (mode == 2) {
             frontier = new FrontierPriorityQueue();
+        } else if (mode == 3) {
+            frontier = new FrontierPriorityQueue();
+            maze.setAStar(true);
         }
 
         frontier.add(maze.getStart());
@@ -80,8 +83,8 @@ public class MazeSolver {
         System.out.println("\033[2J\033[1;1H");
     }
 
-    // public static void main(String[] args) {
-    // MazeSolver n = new MazeSolver("maze.txt");
-    // n.solve(2);
-    // }
+    public static void main(String[] args) {
+        MazeSolver n = new MazeSolver("maze.txt");
+        n.solve(0);
+    }
 }

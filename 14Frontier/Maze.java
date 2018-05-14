@@ -10,6 +10,7 @@ public class Maze {
 
     Location start, end;
     private char[][] maze;
+    private boolean aStar = false;
 
     /*
      * YOU MUST COMPLETE THIS METHOD!!! YOU MUST COMPLETE THIS METHOD!!! YOU MUST
@@ -19,17 +20,24 @@ public class Maze {
         Location[] locations = new Location[4];
         int x = L.getX();
         int y = L.getY();
+        int dist = 0;
+        if(aStar){
+            
+        } else {
+            dist = Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY());
+        }
+
         if ((x + 1 >= 0) && (x + 1 < maze.length) && ((maze[x + 1][y] == ' ') || (maze[x + 1][y] == 'E'))) {
-            locations[0] = new Location(x + 1, y, L, Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY()));
+            locations[0] = new Location(x + 1, y, L, dist);
         }
         if ((x - 1 >= 0) && (x - 1 < maze.length) && ((maze[x - 1][y] == ' ') || (maze[x - 1][y] == 'E'))) {
-            locations[1] = new Location(x - 1, y, L, Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY()));
+            locations[1] = new Location(x - 1, y, L, dist);
         }
         if ((y + 1 >= 0) && (y + 1 < maze[0].length) && ((maze[x][y + 1] == ' ') || (maze[x][y + 1] == 'E'))) {
-            locations[2] = new Location(x, y + 1, L, Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY()));
+            locations[2] = new Location(x, y + 1, L, dist);
         }
         if ((y - 1 >= 0) && (y - 1 < maze[0].length) && ((maze[x][y - 1] == ' ') || (maze[x][y - 1] == 'E'))) {
-            locations[3] = new Location(x, y - 1, L, Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY()));
+            locations[3] = new Location(x, y - 1, L, dist);
         }
         return locations;
     }
@@ -40,6 +48,10 @@ public class Maze {
 
     public Location getEnd() {
         return end;
+    }
+
+    public void setAStar(boolean n){
+        aStar = n;
     }
 
     private static String go(int x, int y) {
