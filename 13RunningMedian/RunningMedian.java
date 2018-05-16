@@ -1,4 +1,4 @@
-public class RunningMedians{
+public class RunningMedian{
     private MyHeap<Integer> minHeap = new MyHeap<>(false);
     private MyHeap<Integer> maxHeap = new MyHeap<>();
     private int median;
