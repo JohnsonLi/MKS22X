@@ -15,6 +15,8 @@ public class MazeSolver {
     // mode: required to allow for alternate solve modes.
     // 0: BFS
     // 1: DFS
+    // 2: Greedy
+    // 3: A*
     public boolean solve(int mode) {
         // initialize your frontier
         if (mode == 0) {

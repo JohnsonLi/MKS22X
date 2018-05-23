@@ -4,16 +4,16 @@ public class Location implements Comparable<Location> {
     private int dist;
     private int distSoFar = 0;
 
-    public Location(int x, int y, Location prev, int dist) {
+    public Location(int x, int y, Location prev, int dist, int soFar) {
         this.x = x;
         this.y = y;
         this.previous = prev;
         this.dist = dist;
-        this.distSoFar = prev.distSoFar + 1;
+        distSoFar = soFar;
     }
 
     public int compareTo(Location n) {
-        return dist - n.dist;
+        return dist + travelled() - n.dist - n.travelled();
     }
 
     public int getX() {
@@ -26,5 +26,9 @@ public class Location implements Comparable<Location> {
 
     public Location getPrevious() {
         return previous;
+    }
+
+    public int travelled(){
+        return distSoFar;
     }
 }

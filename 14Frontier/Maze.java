@@ -21,23 +21,25 @@ public class Maze {
         int x = L.getX();
         int y = L.getY();
         int dist = 0;
+        int soFar = 0;
         if(aStar){
-            
-        } else {
-            dist = Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY());
+            if(L.getPrevious() != null){
+                soFar = L.getPrevious().travelled() + 1;
+            }
         }
+        dist = Math.abs(x - getEnd().getX()) + Math.abs(y - getEnd().getY());
 
         if ((x + 1 >= 0) && (x + 1 < maze.length) && ((maze[x + 1][y] == ' ') || (maze[x + 1][y] == 'E'))) {
-            locations[0] = new Location(x + 1, y, L, dist);
+            locations[0] = new Location(x + 1, y, L, dist, soFar);
         }
         if ((x - 1 >= 0) && (x - 1 < maze.length) && ((maze[x - 1][y] == ' ') || (maze[x - 1][y] == 'E'))) {
-            locations[1] = new Location(x - 1, y, L, dist);
+            locations[1] = new Location(x - 1, y, L, dist, soFar);
         }
         if ((y + 1 >= 0) && (y + 1 < maze[0].length) && ((maze[x][y + 1] == ' ') || (maze[x][y + 1] == 'E'))) {
-            locations[2] = new Location(x, y + 1, L, dist);
+            locations[2] = new Location(x, y + 1, L, dist, soFar);
         }
         if ((y - 1 >= 0) && (y - 1 < maze[0].length) && ((maze[x][y - 1] == ' ') || (maze[x][y - 1] == 'E'))) {
-            locations[3] = new Location(x, y - 1, L, dist);
+            locations[3] = new Location(x, y - 1, L, dist, soFar);
         }
         return locations;
     }
@@ -119,8 +121,8 @@ public class Maze {
          * start/end Locations may need more information later when we add other kinds
          * of frontiers!
          */
-        end = new Location(endr, endc, null, 0);
-        start = new Location(startr, startc, null, 0);
+        end = new Location(endr, endc, null, 0, 0);
+        start = new Location(startr, startc, null, 0, 0);
     }
 
     public String toStringColor() {
