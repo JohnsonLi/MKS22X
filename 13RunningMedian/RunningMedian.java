@@ -1,11 +1,16 @@
 import com.sun.glass.ui.Size;
 
 public class RunningMedian {
-    private MyHeap<Double> minHeap = new MyHeap<>(false);
-    private MyHeap<Double> maxHeap = new MyHeap<>();
+    private MyHeap<Double> minHeap;
+    private MyHeap<Double> maxHeap;
     private double median;
 
-    public void addValue(double value) {
+    public RunningMedian() {
+        minHeap = new MyHeap<>(false);
+        maxHeap = new MyHeap<>();
+    }
+
+    public void add(Double value) {
         if (minHeap.size() == 0 && maxHeap.size() == 0) {
             median = value;
             maxHeap.add(value);
@@ -31,7 +36,7 @@ public class RunningMedian {
         }
     }
 
-    public double getMedian() {
+    public Double getMedian() {
         return median;
     }
 
@@ -41,11 +46,11 @@ public class RunningMedian {
 
     // public static void main(String[] args) {
     // RunningMedian n = new RunningMedian();
-    // n.addValue(1);
-    // n.addValue(2);
-    // n.addValue(5);
-    // n.addValue(587);
-    // n.addValue(2131312);
+    // n.add(1.0);
+    // n.add(2.0);
+    // n.add(5.0);
+    // // n.add(587.0);
+    // n.add(2131312.0);
     // System.out.println(n.size());
     // System.out.println(n.getMedian());
     // }
