@@ -1,7 +1,7 @@
 public class MazeSolver {
     private Maze maze;
     private Frontier frontier;
-    private boolean animate = true;
+    private boolean animate = false;
 
     public MazeSolver(String mazeText) {
         maze = new Maze(mazeText);
@@ -51,7 +51,10 @@ public class MazeSolver {
                     } else {
                         maze.set(location.getX(), location.getY(), '@');
                     }
-                    System.out.println(maze.toStringColor());
+                    if(animate){
+                        System.out.println(maze.toStringColor());
+
+                    }
                     location = location.getPrevious();
                 }
                 return true;
