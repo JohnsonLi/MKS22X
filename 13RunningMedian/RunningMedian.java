@@ -1,9 +1,7 @@
-import com.sun.glass.ui.Size;
-
 public class RunningMedian {
     private MyHeap<Double> minHeap;
     private MyHeap<Double> maxHeap;
-    private double median;
+    private double median = 0;
 
     public RunningMedian() {
         minHeap = new MyHeap<>(false);
