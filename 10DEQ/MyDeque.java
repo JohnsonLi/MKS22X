@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class MyDeque<E> {
 
     public E[] deck;
